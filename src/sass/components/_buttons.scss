@@ -1,0 +1,10 @@
+.btn-accent {
+  @extend %buttons;
+  background-color: $accent-color;
+}
+
+.btn-main {
+  @extend %buttons;
+  background-color: transparent;
+  border: 1px solid $white-color;
+}
