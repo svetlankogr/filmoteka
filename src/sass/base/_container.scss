@@ -1,0 +1,17 @@
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @media screen and (min-width: $phone-width) {
+    max-width: $phone-width;
+  }
+
+  @media screen and (min-width: $tablet-width) {
+    max-width: $tablet-width;
+    padding: 0 32px;
+  }
+
+  @media screen and (min-width: $desktop-width) {
+    max-width: $desktop-width;
+  }
+}

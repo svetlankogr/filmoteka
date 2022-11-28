@@ -1,0 +1,14 @@
+//utils
+@import './utils/variables';
+@import './utils/mixins';
+@import './utils/placeholders';
+
+// base
+@import './base/common';
+@import './base/container';
+@import './base/global';
+
+// layout
+@import './layout/header';
+@import './layout/films';
+@import './layout/footer';

@@ -1,0 +1,48 @@
+//Containers
+$desktop-width: 1200px;
+$tablet-width: 768px;
+$phone-width: 480px;
+$phone-width-sm: 320px;
+
+//COLORS
+$accent-color: #84a278;
+$primary-color: #f8d24e;
+$hover-color: #0a8817;
+$disabled-color: #ababab;
+$light-text-color: #fcfcfc;
+$default-text-color: #131313;
+$invalid-form-color: #ff0000;
+$valid-form-color: #008000;
+
+//section products
+$ice-cream-color: #aec6a5;
+$ice-coffee-color: #efd478;
+$milkshakes-color: #d6936d;
+
+//section contacts
+$address-text-color: #d6936d;
+
+//footer
+$copyright-text-color: #7a7a7a;
+
+//FONTS
+//font-size
+$default-font-size: 10px;
+//family
+$main-font-family: 'Montserrat', sans-serif;
+$title-font-family: 'Seymour One', sans-serif;
+
+//weight
+$regular-text: 400;
+$medium-text: 500;
+$semibold-text: 600;
+$bold-text: 700;
+$extrabold-text: 800;
+$black-text: 900;
+
+//letter-spacing
+$default-letter-spacing: 0.04em;
+
+//ANIMATION
+$transition-duration: 250ms;
+$transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
