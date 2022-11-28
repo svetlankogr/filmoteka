@@ -1,7 +1,7 @@
 //utils
 @import './utils/variables';
-@import './utils/mixins';
 @import './utils/placeholders';
+@import './utils/mixins';
 
 // base
 @import './base/common';
@@ -9,6 +9,10 @@
 @import './base/global';
 
 // layout
-@import './layout/header';
+@import './layout/main-header';
+@import './layout/library-header';
 @import './layout/films';
 @import './layout/footer';
+
+// components
+@import './components/buttons'
