@@ -107,12 +107,19 @@
   font-size: 2rem;
   line-height: 2.3rem;
   color: $main-color;
+  text-transform: uppercase;
+
   @media screen and (min-width: $desktop) {
     font-size: 30px;
     line-height: calc(35 / 30);
   }
 }
 
+.modal-film__item-value {
+  &--uppercase {
+    text-transform: uppercase;
+  }
+}
 .modal-film__list {
   margin-bottom: 20px;
 }
@@ -164,7 +171,7 @@
   line-height: calc(20 / 12);
 }
 
-.wrapper-btn {
+.modal-film__wrapper-btn {
   display: flex;
   gap: 20px;
   @media screen and (min-width: $desktop) {
@@ -179,14 +186,14 @@
   background-color: transparent;
   border: 1px solid $main-color;
   color: $main-color;
-  &:hover,
-  &:focus {
-    background-color: $accent-color;
-    color: $white-color;
-    border: none;
-    outline: transparent;
-  }
   @media screen and (min-width: $tablet) {
     width: 125px;
   }
+}
+
+.modal-film__watched {
+  background-color: $accent-color;
+  color: $white-color;
+  border: none;
+  outline: transparent;
 }

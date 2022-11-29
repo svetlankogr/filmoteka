@@ -1,2 +1,2 @@
 import './js/main-initial-films';
-import './js/modal';
+import './js/modal-film';
