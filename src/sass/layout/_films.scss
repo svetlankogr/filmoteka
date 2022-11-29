@@ -66,18 +66,17 @@
 }
 
 .films__rating {
+  min-width: 3.6rem;
   margin-left: 0.8rem;
   background-color: $accent-color;
   padding: 0.1rem 0.6rem;
   color: $white-color;
+  font-size: 1.2rem;
   line-height: calc(14/12);
   border-radius: 5px;
 
-  @media screen and (min-width: $tablet) {
-    padding: 0.1rem 0.9rem;
-  }
-
   @media screen and (min-width: $desktop) {
-    padding: 0.3rem 1.1rem;
+    min-width: 4rem;
+    padding: 0.3rem 0.8rem;
   }
 }
