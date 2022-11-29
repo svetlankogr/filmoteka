@@ -24,13 +24,13 @@ fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`)
         }       
       }
       const releaseDate = new Date(el.release_date);
-      return `<li class="films__item" data-id="${el.id}">
-<a href="" class="films__link">
+      return `<li class="films__item">
+<a href="" class="films__link"  role="button" data-filmId="${el.id}">
   <div class="films__img-container">
     <img
       src="https://image.tmdb.org/t/p/original/${el.poster_path}"
-      alt=""
-      class="${el.original_title} poster"
+      alt="${el.original_title} poster"
+      class="films__img"
     />
   </div>
   <h2 class="films__title">${el.original_title}</h2>
@@ -44,3 +44,4 @@ fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`)
 
 })();
 
+export default apiKey
