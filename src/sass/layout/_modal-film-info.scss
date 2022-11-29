@@ -34,6 +34,15 @@
   height: 14px;
   background-color: transparent;
 }
+.modal-film__container {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    gap: 68px;
+  }
+  @media screen and (min-width: $desktop) {
+    gap: 16px;
+  }
+}
 
 .modal-film {
   position: absolute;
@@ -49,7 +58,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    gap: 68px;
+
     width: 704px;
     padding: 40px 72px 40px 36px;
   }
