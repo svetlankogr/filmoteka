@@ -1,27 +1,26 @@
 <!-- <header>HEADER</header> -->
  <header class="header">
-      <div class="container">
+      <div class="container container-header">
         <nav class="nav">
-          <div class="nav__logo">
-            <a href="./index.html">
+          
+            <a class="logo" href="./index.html">
               <img
                 class="logo__img"
                 src="./images/film.png" alt="logo of movie"
               />
               <span class="logo__title">Filmoteka</span>
             </a>
-          </div>
-          <div class="nav__list">
+          
             <ul class="navigation">
-              <li class="navigation__item navigation__item--accent">
+              <li class="navigation__item navigation__current-page">
                 <a class="navigation__link link" href="./index.html">Home</a>
               </li>
               <li class="navigation__item navigation__margin">
                 <a class="navigation__link link" href="./library.html">My Library</a>
               </li>
             </ul>
-          </div>
         </nav>
+        
         <div class="search">
           <form class="search__form" id="search-form">
             <input
@@ -29,16 +28,16 @@
               type="text"
               name="searchQuery"
               autocomplete="off"
-              placeholder="Searching movies..."
+              placeholder="Movie search"
             />
+            
             <button class="search__btn js-search__btn" type="submit" name="submitInputBtn">
               <svg class="search__icon" width="12" height="12">
-                <use href="./images/search.png"></use>
-            </svg>
+                <use href="./images/search.png"></use></svg>
           </button>
         </form>
       </div>
       <div class="search__result">
-        Search result not successful. Enter the correct movie name and try again
+        <!-- Search result not successful. Enter the correct movie name and try again -->
       </div>
     </header>
