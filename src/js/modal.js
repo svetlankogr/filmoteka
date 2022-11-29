@@ -1,41 +1,50 @@
 import axios from 'axios';
-const containerForModal = document.querySelector('.modal-film__container');
+const containerForModal = document.querySelector('.js-container');
 const filmsList = document.querySelector('.films__list');
 const modal = document.querySelector('[data-modal]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
 
-filmsList.addEventListener('click', onFilmClick);
-closeModalBtn.addEventListener('click', onCloseModalClick);
-
 axios.defaults.baseURL = 'https://api.themoviedb.org/';
 const API_KEY = 'e20dc8db2a19ccc0feaf13905c82de4b';
+
+filmsList.addEventListener('click', onFilmClick);
 
 async function getFilmById(id) {
   const { data } = await axios.get(`3/movie/${id}?api_key=${API_KEY}`);
   return data;
 }
 
-function onCloseModalClick() {
-  modal.classList.add('is-hidden');
-}
+function getGenres()
 
-function onFilmClick(e) {
+async function onFilmClick(e) {
   e.preventDefault();
-  if (e.target.nodeName !== 'IMG') {
+  containerForModal.innerHTML = '';
+  if (e.target.nodeName === 'UL') {
     return;
   }
   modal.classList.remove('is-hidden');
-  console.log(e.target.nodeName);
-
-  const item = e.target.closest('.modal-film__container');
-  const id = item.dataset.id;
-  getFilmById(id).then(film => {
+  const item = e.target.closest('a');
+  console.log(item);
+  const id = item.dataset.filmid;
+  try {
+    const film = await getFilmById(id);
     const markUp = renderModalMarkup(film);
     containerForModal.innerHTML = markUp;
-  });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-function renderModalMarkup({ id, vote_average, vote_count, poster_path }) {
+function renderModalMarkup({
+  id,
+  vote_average,
+  vote_count,
+  poster_path,
+  original_title,
+  popularity,
+  genre,
+  overview,
+}) {
   return `<div class="modal-film__container data-id=${id}">
     <div class="modal-film__wrapper-img">
       <img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${original_title}" class="modal-film__img" />
@@ -66,4 +75,26 @@ function renderModalMarkup({ id, vote_average, vote_count, poster_path }) {
         </p>
       </div>
       </div>`;
+}
+// CLOSE MODAL
+closeModalBtn.addEventListener('click', onCloseModalClick);
+modal.addEventListener('click', onBackdropCloseClick);
+document.addEventListener('keydown', onEscKeydown);
+
+function onCloseModalClick() {
+  modal.classList.add('is-hidden');
+  document.removeEventListener('keydown', onEscKeydown);
+  document.removeEventListener('click', onBackdropCloseClick);
+}
+
+function onBackdropCloseClick(e) {
+  if (e.target === modal) {
+    onCloseModalClick();
+  }
+}
+
+function onEscKeydown(e) {
+  if (e.code === 'Escape' && !modal.classList.contains('is-hidden')) {
+    onCloseModalClick();
+  }
 }
