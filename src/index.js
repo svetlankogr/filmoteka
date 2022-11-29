@@ -1,1 +1,2 @@
-import "./js/main-initial-films"
+import './js/main-initial-films';
+import './js/modal-team';

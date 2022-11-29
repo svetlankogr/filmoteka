@@ -1,0 +1,129 @@
+:root {
+  /* ----Colors ---- */
+  --main-white: #fff;
+  --main-black: #212121;
+  --main-blue: #2196f3;
+  --main-bg: #2f303a;
+  --main-gray: #757575;
+  --white-60: rgba(255, 255, 255, 0.6);
+  --single-button-bg: #f5f4fa;
+  --projects-list-li-border-color: #eeeeee;
+  --header-border-color: #ececec;
+  --feature-item-icon-bg: #f5f4fa;
+  --customers-border: 1px solid #afb1b8;
+  --customers-icon-color: #afb1b8;
+  --social-media-bg-color: rgba(255, 255, 255, 0.1);
+  /* ---- Visual Effects ---- */
+  --anim-fast: 300ms ease;
+  --anim-slow: 600ms ease-in;
+}
+
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+
+body {
+  position: relative;
+}
+
+/* ------------- Modal window --------------*/
+
+/* ---------- початковий стан Backdrop-y ---------- */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.3);
+
+  transition: opacity var(--anim-slow), visibility var(--anim-slow);
+
+  /* для наглядності властивості за змовчуванням */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: initial;
+}
+
+/* кінцевий стан */
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ---------- початковий стан Modal Window ---------- */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1) rotate(0);
+  opacity: 1;
+
+  padding: 40px;
+  width: 95%;
+
+  background-color: var(--main-white);
+  border-radius: 4px;
+
+  transition: transform var(--anim-fast) 400ms, opacity var(--anim-fast) 400ms;
+
+  @media screen and (min-width: 480px) {
+    max-width: 450px;
+    width: 100%;
+    min-height: 609px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 528px;
+    min-height: 581px;
+  }
+}
+
+/* кінцевий стан */
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0;
+}
+
+/* ---------- Close Button ---------- */
+.modal-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  background-color: var(--main-white);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  cursor: pointer;
+  transition-property: fill;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    fill: var(--main-blue);
+  }
+}
