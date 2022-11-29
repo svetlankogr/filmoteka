@@ -25,12 +25,13 @@ async function onFilmClick(e) {
   const id = item.dataset.filmid;
 
   try {
-    const film = await getFilmById(id);
-    const allGenres = getAllGenres(film.genres);
-    const markUp = renderModalMarkup(film, allGenres);
+    const { data } = await getFilmById(id);
+    const allGenres = getAllGenres(data.genres);
+    const markUp = renderModalMarkup(data, allGenres);
     containerForModal.innerHTML = markUp;
   } catch (error) {
     Notify.failure(error);
+    onCloseModalClick();
   }
 }
 

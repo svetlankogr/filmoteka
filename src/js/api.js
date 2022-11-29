@@ -17,7 +17,6 @@ export function fetchGenresList() {
   return filmsApi.get('3/genre/movie/list', { params: { language: 'en-US' } });
 }
 
-export async function getFilmById(id) {
-  const { data } = await filmsApi.get(`3/movie/${id}`);
-  return data;
+export function getFilmById(id) {
+  return filmsApi.get(`3/moviwe/${id}`);
 }
