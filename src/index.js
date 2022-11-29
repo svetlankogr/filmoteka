@@ -1,1 +1,1 @@
-import "./js/popular"
+import "./js/main-initial-films"
