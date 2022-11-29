@@ -18,5 +18,5 @@ export function fetchGenresList() {
 }
 
 export function getFilmById(id) {
-  return filmsApi.get(`3/moviwe/${id}`);
+  return filmsApi.get(`3/movie/${id}`);
 }
