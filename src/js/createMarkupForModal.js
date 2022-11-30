@@ -1,4 +1,4 @@
-export function renderModalMarkup(films, genresList) {
+export function renderModalMarkup(films, genresList, key) {
   let {
     id,
     vote_average,
@@ -10,9 +10,15 @@ export function renderModalMarkup(films, genresList) {
   } = films;
   vote_average = vote_average.toFixed(1);
 
+  let imgOrVideo = `<img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${original_title}" class="modal-film__img" />`
+
+  if (key) {
+    imgOrVideo = `<iframe class="modal-film__video" src="https://www.youtube.com/embed/${key}" title=${original_title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+  }
+
   return `<div class="modal-film__container data-id=${id}">
     <div class="modal-film__wrapper-img">
-      <img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${original_title}" class="modal-film__img" />
+      ${imgOrVideo}
     </div>
     <div class="modal-film__wrapper-info">
       <h1 class="modal-film__title">${original_title}</h1>

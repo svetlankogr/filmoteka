@@ -1,5 +1,5 @@
 import { Notify } from 'notiflix';
-import { getFilmById } from './api';
+import { getFilmById, getTrailerById } from './api';
 import { renderModalMarkup } from './createMarkupForModal';
 
 const containerForModal = document.querySelector('.js-container');
@@ -26,11 +26,16 @@ async function onFilmClick(e) {
 
   try {
     const { data } = await getFilmById(id);
+    const { data: {results: trailersArray} } = await getTrailerById(id);
+    let key = null;
+    if (trailersArray.length) {
+      key = trailersArray[0].key;
+    }
     const allGenres = getAllGenres(data.genres);
-    const markUp = renderModalMarkup(data, allGenres);
+    const markUp = renderModalMarkup(data, allGenres, key);
     containerForModal.innerHTML = markUp;
   } catch (error) {
-    Notify.failure(error);
+    Notify.failure(error.message);
     onCloseModalClick();
   }
 }
