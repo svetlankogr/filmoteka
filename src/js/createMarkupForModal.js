@@ -11,9 +11,9 @@ export function renderModalMarkup(films, genresList) {
   vote_average = vote_average.toFixed(1);
 
   return `<div class="modal-film__container data-id=${id}">
-    <div class="modal-film__wrapper-img">
+    <a class="modal-film__img-link" data-image-link>
       <img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${original_title}" class="modal-film__img" />
-    </div>
+    </a>
     <div class="modal-film__wrapper-info">
       <h1 class="modal-film__title">${original_title}</h1>
       <ul class="modal-film__list">

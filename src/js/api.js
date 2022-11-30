@@ -24,3 +24,7 @@ export function searchFilms(keyword) {
 export function getFilmById(id) {
   return filmsApi.get(`movie/${id}`);
 }
+
+export function getTrailerById(id) {
+  return filmsApi.get(`movie/${id}/videos`)
+}
