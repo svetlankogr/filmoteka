@@ -43,6 +43,7 @@ async function onFilmClick(e) {
 
 export function onCloseModalClick() {
   if(!modalVideo.classList.contains('is-hidden')) {
+    modalVideo.innerHTML = "";
     modalVideo.classList.add('is-hidden');
     return
   }
