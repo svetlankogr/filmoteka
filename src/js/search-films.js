@@ -23,7 +23,6 @@ async function onSubmitFetchMovies(e) {
     if (!filmsArray.length) {
       Notify.failure("Films not found");
       list.innerHTML = "";
-      spinner.hidden = true;
       return
     }
     const items = createFilmItemMarkup(filmsArray);
@@ -31,5 +30,8 @@ async function onSubmitFetchMovies(e) {
     spinner.hidden = true;
   } catch (error) {
     Notify.failure(error.message);
+  }
+  finally{
+    spinner.hidden = true
   }
 }

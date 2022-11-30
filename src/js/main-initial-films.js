@@ -19,9 +19,12 @@ const spinner = document.querySelector('.circ');
     genresList = genres;
     const items = createFilmItemMarkup(filmArray);
     list.innerHTML = items;
-    spinner.hidden = true;
+
   } catch (error) {
     Notify.failure(error);
+  }
+  finally{
+    spinner.hidden = true
   }
 })();
 
