@@ -34,6 +34,15 @@
   height: 14px;
   background-color: transparent;
 }
+.modal-film__container {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    gap: 68px;
+  }
+  @media screen and (min-width: $desktop) {
+    gap: 16px;
+  }
+}
 
 .modal-film {
   position: absolute;
@@ -49,7 +58,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    gap: 68px;
+
     width: 704px;
     padding: 40px 72px 40px 36px;
   }
@@ -69,13 +78,14 @@
   }
 }
 
-.modal-film__wrapper-img {
+.modal-film__img-link {
   width: 240px;
   height: 357px;
 
   border-radius: 5px;
   overflow: hidden;
   margin-bottom: 20px;
+  cursor: pointer;
   @media screen and (min-width: $tablet) {
     width: 264px;
     height: 373px;
@@ -83,6 +93,26 @@
   @media screen and (min-width: $desktop) {
     width: 375px;
     height: 478px;
+  }
+}
+
+.modal-film__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 95%;
+  height: 50%;
+  max-height: 95%;
+  transform: translate(-50%, -50%);
+
+  @media screen and (min-width: $tablet) {
+    width: 830px;
+    height: 480px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 1000px;
+    height: 580px;
   }
 }
 
@@ -98,12 +128,19 @@
   font-size: 2rem;
   line-height: 2.3rem;
   color: $main-color;
+  text-transform: uppercase;
+
   @media screen and (min-width: $desktop) {
     font-size: 30px;
     line-height: calc(35 / 30);
   }
 }
 
+.modal-film__item-value {
+  &--uppercase {
+    text-transform: uppercase;
+  }
+}
 .modal-film__list {
   margin-bottom: 20px;
 }
@@ -155,7 +192,7 @@
   line-height: calc(20 / 12);
 }
 
-.wrapper-btn {
+.modal-film__wrapper-btn {
   display: flex;
   gap: 20px;
   @media screen and (min-width: $desktop) {
@@ -170,14 +207,14 @@
   background-color: transparent;
   border: 1px solid $main-color;
   color: $main-color;
-  &:hover,
-  &:focus {
-    background-color: $accent-color;
-    color: $white-color;
-    border: none;
-    outline: transparent;
-  }
   @media screen and (min-width: $tablet) {
     width: 125px;
   }
+}
+
+.modal-film__watched {
+  background-color: $accent-color;
+  color: $white-color;
+  border: none;
+  outline: transparent;
 }

@@ -1,1 +1,34 @@
-<header>Library Header</header>
+<!-- <header>Library Header</header> -->
+<header class="header__library">
+  <div class="container container-header-library">
+    <nav class="nav">
+      <a class="logo" href="./index.html">
+        <img class="logo__img" src="./images/film.png" alt="logo of movie" />
+        <span class="logo__title">Filmoteka</span>
+      </a>
+
+      <ul class="navigation">
+        <li class="navigation__item">
+          <a class="navigation__link" href="./index.html">Home</a>
+        </li>
+        <li class="navigation__item navigation__current-page">
+          <a class="navigation__link" href="./library.html">My Library</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="header__buttons">
+      <button
+        type="button"
+        class="btn-accent header__buttons-library header__buttons-library--watched"
+      >
+        Watched
+      </button>
+      <button
+        type="button"
+        class="btn-main header__buttons-library header__buttons-library--queue"
+      >
+        Queue
+      </button>
+    </div>
+  </div>
+</header>

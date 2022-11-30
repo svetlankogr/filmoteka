@@ -17,6 +17,7 @@
 
 .films__link {
   display: block;
+  height: 100%;
 }
 
 .films__img-container {
@@ -41,27 +42,27 @@
 }
 
 .films__title {
-  line-height: calc(14/12);
+  line-height: calc(14 / 12);
   font-weight: $medium-weight;
   text-transform: uppercase;
 
   @media screen and (min-width: $tablet) {
-    line-height: calc(16/12);
+    line-height: calc(16 / 12);
   }
 
   @media screen and (min-width: $desktop) {
     font-size: 2rem;
-    line-height: calc(24/20);
+    line-height: calc(24 / 20);
   }
 }
 
 .films__description {
-  color: #FF6B08;
-  line-height: calc(16/12);
+  color: #ff6b08;
+  line-height: calc(16 / 12);
 
   @media screen and (min-width: $desktop) {
     font-size: 2rem;
-    line-height: calc(24/20);
+    line-height: calc(24 / 20);
   }
 }
 
@@ -72,7 +73,7 @@
   padding: 0.1rem 0.6rem;
   color: $white-color;
   font-size: 1.2rem;
-  line-height: calc(14/12);
+  line-height: calc(14 / 12);
   border-radius: 5px;
 
   @media screen and (min-width: $desktop) {
