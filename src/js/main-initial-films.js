@@ -3,21 +3,25 @@ import { fetchGenresList, fetchTopFilms } from './api';
 
 const list = document.querySelector('.films__list');
 
+let genresList = null;
+
 (async () => {
   try {
-    const { data } = await fetchTopFilms();
-    const filmArray = data.results;
     const {
-      data: { genres: genresList },
+      data: { results: filmArray },
+    } = await fetchTopFilms();
+    const {
+      data: { genres },
     } = await fetchGenresList();
-    const items = createFilmItemMarkup(filmArray, genresList);
+    genresList = genres;
+    const items = createFilmItemMarkup(filmArray);
     list.innerHTML = items;
   } catch (error) {
     Notify.failure(error);
   }
 })();
 
-function createFilmItemMarkup(filmArray, genresList) {
+export function createFilmItemMarkup(filmArray) {
   return filmArray
     .map(el => {
       const elGenres = [];
