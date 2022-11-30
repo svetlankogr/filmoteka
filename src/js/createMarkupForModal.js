@@ -13,6 +13,9 @@ export function renderModalMarkup(films, genresList) {
   return `<div class="modal-film__container data-id=${id}">
     <a class="modal-film__img-link" data-image-link>
       <img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${original_title}" class="modal-film__img" />
+      <svg class="modal-film__youtube-icon">
+        <use href="../images/icons.svg#youtube"></use>
+      </svg>
     </a>
     <div class="modal-film__wrapper-info">
       <h1 class="modal-film__title">${original_title}</h1>
