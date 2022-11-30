@@ -1,16 +1,18 @@
 import { Notify } from 'notiflix';
-import { getFilmById, getTrailerById } from './api';
+import { getFilmById } from './api';
 import { renderModalMarkup } from './createMarkupForModal';
+import { onImageClickOpenVideo } from './modal-video-trailer';
 
 const containerForModal = document.querySelector('.js-container');
 const filmsList = document.querySelector('.films__list');
 const modal = document.querySelector('[data-modal]');
+const modalVideo = document.querySelector('[data-modal-video]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
+const imageLinkRef = document.getElementsByClassName('modal-film__img-link')
 
 filmsList.addEventListener('click', onFilmClick);
 closeModalBtn.addEventListener('click', onCloseModalClick);
 modal.addEventListener('click', onBackdropCloseClick);
-document.addEventListener('keydown', onEscKeydown);
 
 async function onFilmClick(e) {
   e.preventDefault();
@@ -26,14 +28,11 @@ async function onFilmClick(e) {
 
   try {
     const { data } = await getFilmById(id);
-    const { data: {results: trailersArray} } = await getTrailerById(id);
-    let key = null;
-    if (trailersArray.length) {
-      key = trailersArray[0].key;
-    }
     const allGenres = getAllGenres(data.genres);
-    const markUp = renderModalMarkup(data, allGenres, key);
+    const markUp = renderModalMarkup(data, allGenres);
+    document.addEventListener('keydown', onEscKeydown);
     containerForModal.innerHTML = markUp;
+    imageLinkRef[0].addEventListener('click', () => onImageClickOpenVideo(id))
   } catch (error) {
     Notify.failure(error.message);
     onCloseModalClick();
@@ -42,14 +41,18 @@ async function onFilmClick(e) {
 
 // CLOSE MODAL
 
-function onCloseModalClick() {
+export function onCloseModalClick() {
+  if(!modalVideo.classList.contains('is-hidden')) {
+    modalVideo.classList.add('is-hidden');
+    return
+  }
   modal.classList.add('is-hidden');
   document.removeEventListener('keydown', onEscKeydown);
   document.removeEventListener('click', onBackdropCloseClick);
 }
 
 function onBackdropCloseClick(e) {
-  if (e.target === modal) {
+  if (e.target === e.currentTarget) {
     onCloseModalClick();
   }
 }
