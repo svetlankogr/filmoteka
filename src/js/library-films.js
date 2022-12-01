@@ -7,6 +7,7 @@ import nothing from '../images/theres-nothing-to-see-here.gif';
 const watchedBtn = document.querySelector('.header__buttons-library--watched');
 const queueBtn = document.querySelector('.header__buttons-library--queue');
 const filmsList = document.querySelector('.films__list');
+const spinner = document.querySelector('.circ');
 
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn.addEventListener('click', onQueueBtnClick);
@@ -33,12 +34,15 @@ export function loadFilmsForLibrary(key) {
   if (films) {
     parsedFilms.forEach(async el => {
       try {
+        spinner.hidden = false;
         const { data } = await getFilmById(el);
         const allGenres = getAllGenres(data.genres);
         const markUp = createMarkupForLibrary(data, allGenres);
         filmsList.insertAdjacentHTML('beforeend', markUp);
       } catch (error) {
         console.log(error);
+      } finally {
+        spinner.hidden = true;
       }
     });
   }

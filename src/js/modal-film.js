@@ -8,7 +8,7 @@ const filmsList = document.querySelector('.films__list');
 const modal = document.querySelector('[data-modal]');
 const modalVideo = document.querySelector('[data-modal-video]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
-const imageLinkRef = document.getElementsByClassName('modal-film__img-link');
+const spinner = document.querySelector('.circ');
 
 export const WATCHED_KEY = 'watched';
 export const QUEUE_KEY = 'queue';
@@ -26,6 +26,7 @@ modal.addEventListener('click', onBackdropCloseClick);
 
 async function onFilmClick(e) {
   e.preventDefault();
+  spinner.hidden = false;
   containerForModal.innerHTML = '';
 
   if (e.target.nodeName === 'UL') {
@@ -54,7 +55,8 @@ async function onFilmClick(e) {
 
     document.addEventListener('keydown', onEscKeydown);
     containerForModal.innerHTML = markUp;
-    imageLinkRef[0].addEventListener('click', () => onImageClickOpenVideo(id));
+    const imageLinkRef = document.querySelector('.modal-film__img-link');
+    imageLinkRef.addEventListener('click', () => onImageClickOpenVideo(id));
 
     const addToWatchedBtn = document.querySelector('.modal-film__watched');
     const addToQueueBtn = document.querySelector('.modal-film__queue');
@@ -63,6 +65,8 @@ async function onFilmClick(e) {
   } catch (error) {
     Notify.failure(error.message);
     onCloseModalClick();
+  } finally {
+    spinner.hidden = true;
   }
 }
 
@@ -113,6 +117,7 @@ function onAddToWatchedBtnClick(e) {
       arrOfWatchedId.splice(index, 1);
       textWatchedBtn = 'add to watched';
       e.target.textContent = textWatchedBtn;
+      Notify.success('Film successfully removed from "Watched"');
       if (window.location.pathname === '/library.html') {
         filmCardId = filmsList.querySelector(`[data-filmId="${id}"]`);
         filmCardId.remove();
@@ -123,6 +128,7 @@ function onAddToWatchedBtnClick(e) {
     arrOfWatchedId.push(id);
     textWatchedBtn = 'remove from watched';
     e.target.textContent = textWatchedBtn;
+    Notify.success('Film successfully added to "Watched"');
   }
   localStorage.setItem(WATCHED_KEY, JSON.stringify(arrOfWatchedId));
 }
@@ -137,11 +143,13 @@ function onAddToQueueBtnClick(e) {
       arrOfQueueId.splice(index, 1);
       textQueueBtn = 'add to queue';
       e.target.textContent = textQueueBtn;
+      Notify.success('Film successfully removed from "Queue"');
     }
   } else {
     arrOfQueueId.push(id);
     textQueueBtn = 'remove from queue';
     e.target.textContent = textQueueBtn;
+    Notify.success('Film successfully added to "queue"');
   }
   localStorage.setItem(QUEUE_KEY, JSON.stringify(arrOfQueueId));
 }

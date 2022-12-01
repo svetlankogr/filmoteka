@@ -5,8 +5,6 @@ const list = document.querySelector('.films__list');
 let genresList = null;
 const spinner = document.querySelector('.circ');
 
-
-
 (async () => {
   try {
     spinner.hidden = false;
@@ -19,12 +17,10 @@ const spinner = document.querySelector('.circ');
     genresList = genres;
     const items = createFilmItemMarkup(filmArray);
     list.innerHTML = items;
-
   } catch (error) {
     Notify.failure(error);
-  }
-  finally{
-    spinner.hidden = true
+  } finally {
+    spinner.hidden = true;
   }
 })();
 
