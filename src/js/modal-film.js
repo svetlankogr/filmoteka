@@ -16,6 +16,7 @@ export const QUEUE_KEY = 'queue';
 let textWatchedBtn;
 let textQueueBtn;
 let id;
+let filmCardId;
 const arrOfWatchedId = [];
 const arrOfQueueId = [];
 
@@ -32,7 +33,7 @@ async function onFilmClick(e) {
   }
 
   modal.classList.remove('is-hidden');
-  const item = e.target.closest('a');
+  const item = e.target.closest('li');
   id = item.dataset.filmid;
 
   try {
@@ -57,7 +58,6 @@ async function onFilmClick(e) {
 
     const addToWatchedBtn = document.querySelector('.modal-film__watched');
     const addToQueueBtn = document.querySelector('.modal-film__queue');
-
     addToWatchedBtn.addEventListener('click', onAddToWatchedBtnClick);
     addToQueueBtn.addEventListener('click', onAddToQueueBtnClick);
   } catch (error) {
@@ -106,13 +106,18 @@ export function getAllGenres(array) {
 function onAddToWatchedBtnClick(e) {
   if (arrOfWatchedId.includes(id)) {
     if (arrOfWatchedId.length === 0) {
-      markupForEmptyLibrary();
+      return;
     }
     const index = arrOfWatchedId.indexOf(id);
     if (index !== -1) {
       arrOfWatchedId.splice(index, 1);
       textWatchedBtn = 'add to watched';
       e.target.textContent = textWatchedBtn;
+      if (window.location.pathname === '/library.html') {
+        filmCardId = filmsList.querySelector(`[data-filmId="${id}"]`);
+        filmCardId.remove();
+        onCloseModalClick();
+      }
     }
   } else {
     arrOfWatchedId.push(id);
@@ -125,7 +130,7 @@ function onAddToWatchedBtnClick(e) {
 function onAddToQueueBtnClick(e) {
   if (arrOfQueueId.includes(id)) {
     if (arrOfQueueId.length === 0) {
-      markupForEmptyLibrary();
+      return;
     }
     const index = arrOfQueueId.indexOf(id);
     if (index !== -1) {
@@ -153,3 +158,5 @@ function savedDataFromLocalStorage(key, arrOfId) {
     });
   }
 }
+
+console.log(window.location.pathname);
