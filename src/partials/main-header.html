@@ -4,10 +4,8 @@
         <nav class="nav">
           
             <a class="logo" href="./index.html">
-              <img
-                class="logo__img"
-                src="./images/film.png" alt="logo of movie"
-              />
+              <svg class="logo__img" width="24" height="24">
+                <use href="./images/header-icons.svg#icon-film"></use></svg>
               <span class="logo__title">Filmoteka</span>
             </a>
           
@@ -18,6 +16,9 @@
               <li class="navigation__item navigation__margin">
                 <a class="navigation__link link" href="./library.html">My Library</a>
               </li>
+              <li class="navigation__item">
+          <a class="navigation__link" href="#">Account</a>
+        </li>
             </ul>
         </nav>
         
@@ -33,7 +34,7 @@
             
             <button class="search__btn js-search__btn" type="submit" name="submitInputBtn">
               <svg class="search__icon" width="12" height="12">
-                <use href="./images/search.png"></use></svg>
+                <use href="./images/header-icons.svg#icon-search"></use></svg>
           </button>
         </form>
       </div>

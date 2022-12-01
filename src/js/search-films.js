@@ -4,6 +4,8 @@ import { createFilmItemMarkup } from './main-initial-films';
 
 const formSearchFilmsRef = document.querySelector('#search-form');
 const list = document.querySelector('.films__list');
+const spinner = document.querySelector('.circ');
+
 
 formSearchFilmsRef.addEventListener('submit', onSubmitFetchMovies);
 
@@ -14,7 +16,7 @@ async function onSubmitFetchMovies(e) {
     Notify.failure('Please enter something');
     return;
   }
-  try {
+  try {spinner.hidden = false;
     const {
       data: { results: filmsArray },
     } = await searchFilms(keyword);
@@ -25,7 +27,11 @@ async function onSubmitFetchMovies(e) {
     }
     const items = createFilmItemMarkup(filmsArray);
     list.innerHTML = items;
+    spinner.hidden = true;
   } catch (error) {
     Notify.failure(error.message);
+  }
+  finally{
+    spinner.hidden = true
   }
 }
