@@ -31,6 +31,7 @@
   opacity: 1;
   visibility: visible;
   pointer-events: initial;
+  overflow-y: scroll;
 }
 
 /* кінцевий стан */
@@ -45,7 +46,7 @@
   position: absolute;
   top: 5%;
   left: 50%;
-  transform: translate(-50%, 0) scale(1) rotate(0);
+  transform: translate(-50%, 0) scale(1);
   opacity: 1;
 
   padding: 40px;
@@ -53,7 +54,7 @@
 
   background-color: var(--main-white);
   border-radius: 4px;
-
+  
   transition: transform var(--anim-fast) 400ms, opacity var(--anim-fast) 400ms;
 
   @media screen and (min-width: 480px) {
@@ -63,7 +64,6 @@
   }
 
   @media screen and (min-width: 768px) {
-    // max-width: 828px;
     max-width: 528px;
     min-height: 581px;
   }
@@ -120,10 +120,6 @@
   margin-top: 50px;
   margin-bottom: 30px;
   gap: 30px;
-}
-
-.team {
-  background-color: var(--single-button-bg);
 }
 
 @media screen and (min-width: 768px) {
@@ -254,7 +250,7 @@
 }
 
 .socials__link--light {
-  color: #ffffff;
+  color: var(--main-white);
   background-color: var(--social-media-bg-color);
 }
 
