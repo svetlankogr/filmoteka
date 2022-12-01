@@ -15,7 +15,7 @@ export function renderModalMarkup(
   } = films;
   vote_average = vote_average.toFixed(1);
 
-  const svgHref = new URL('../images/icons.svg#youtube', import.meta.url)
+  // const svgHref = new URL('../images/icons.svg#youtube', import.meta.url)
       // <svg class="modal-film__youtube-icon">
       //   <use href="${svgHref}"></use>
       // </svg>

@@ -50,6 +50,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: 280px;
+  max-width: 95%;
   padding: 48px 20px 40px 20px;
   background: $white-color;
   transition: opacity cubic-bezier(0.4, 0, 0.2, 1) 250ms;
@@ -90,6 +91,7 @@
   @media screen and (min-width: $tablet) {
     width: 264px;
     height: 373px;
+    margin-bottom: 0;
   }
   @media screen and (min-width: $desktop) {
     width: 375px;
