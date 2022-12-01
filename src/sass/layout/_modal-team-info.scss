@@ -1,0 +1,279 @@
+:root {
+  /* ----Colors ---- */
+  --main-white: #fff;
+  --main-blue: #2196f3;
+  --main-gray: #757575;
+  --main-orange: #ff6b08;
+  --single-button-bg: #f5f4fa;
+
+  /* ---- Visual Effects ---- */
+  --anim-fast: 300ms ease;
+  --anim-slow: 600ms ease-in;
+}
+
+// body {
+//   position: relative;
+// }
+
+/* ------------- Modal window --------------*/
+
+/* ---------- початковий стан Backdrop-y ---------- */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.3);
+
+  transition: opacity var(--anim-slow), visibility var(--anim-slow);
+
+  /* для наглядності властивості за змовчуванням */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: initial;
+}
+
+/* кінцевий стан */
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ---------- початковий стан Modal Window ---------- */
+.modal {
+  position: absolute;
+  // top: 50%;
+  top: 5%;
+  left: 50%;
+  // transform: translate(-50%, -50%) scale(1) rotate(0);
+  transform: translate(-50%, 0) scale(1) rotate(0);
+  opacity: 1;
+
+  padding: 40px;
+  width: 95%;
+
+  background-color: var(--main-white);
+  border-radius: 4px;
+
+  transition: transform var(--anim-fast) 400ms, opacity var(--anim-fast) 400ms;
+
+  @media screen and (min-width: 480px) {
+    max-width: 450px;
+    width: 100%;
+    min-height: 609px;
+  }
+
+  @media screen and (min-width: 768px) {
+    // max-width: 828px;
+    max-width: 528px;
+    min-height: 581px;
+  }
+}
+
+/* кінцевий стан */
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0;
+}
+
+/* ---------- Close Button ---------- */
+.modal-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  background-color: var(--main-white);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  cursor: pointer;
+  transition-property: fill;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    fill: var(--main-orange);
+  }
+}
+
+/* ===========            =========== */
+/* ---------- Team Section ---------- */
+/* ===========            =========== */
+
+.team__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  gap: 30px;
+}
+
+.team {
+  background-color: var(--single-button-bg);
+}
+
+@media screen and (min-width: 768px) {
+  .team__list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
+
+.team__member {
+  margin: 0 auto;
+  max-width: 450px;
+  max-height: 622px;
+  height: 100%;
+  background-color: var(--main-white);
+  -webkit-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 0px 0px 4px 4px;
+}
+
+// @media screen and (min-width: 768px) {
+//   .team__member {
+//     width: calc((100% - 30px) / 2);
+//   }
+// }
+// @media screen and (min-width: 1200px) {
+//   .team__member {
+//     width: calc((100% - 90px) / 4);
+//   }
+// }
+
+// @media screen and (max-width: 767px) {
+//   .team__member:not(:last-child) {
+//     margin-bottom: 30px;
+//   }
+// }
+
+.team__block {
+  padding: 30px 0;
+}
+
+.team__title {
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  margin-bottom: 10px;
+}
+
+.team__field {
+  font-size: 16px;
+  color: var(--main-gray);
+  text-align: center;
+  letter-spacing: 0.03em;
+  font-weight: normal;
+  margin-bottom: 16px;
+}
+
+/* ----- Member's Social Media ----- */
+
+.section__title {
+  display: block;
+  text-align: center;
+  font-size: 22px;
+  line-height: 1.17;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding-top: 10px;
+}
+
+@media screen and (max-width: 425px) {
+  .section__title {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .section__title {
+    font-size: 28px;
+  }
+}
+
+.socials {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.socials__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #afb1b8;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+  -webkit-transition-duration: 250ms;
+  transition-duration: 250ms;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.socials__link:hover,
+.socials__link:focus {
+  background-color: var(--main-orange);
+  color: var(--main-white);
+}
+
+.socials__link--light {
+  color: #ffffff;
+  background-color: var(--social-media-bg-color);
+}
+
+.socials__icon {
+  fill: currentColor;
+}
+
+.social-media {
+  text-align: center;
+}
+@media screen and (min-width: 1200px) {
+  .social-media {
+    margin-left: 70px;
+    text-align: left;
+  }
+}
