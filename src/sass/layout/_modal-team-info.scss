@@ -11,14 +11,10 @@
   --anim-slow: 600ms ease-in;
 }
 
-// body {
-//   position: relative;
-// }
-
 /* ------------- Modal window --------------*/
 
 /* ---------- початковий стан Backdrop-y ---------- */
-.backdrop {
+.backdrop-team {
   position: fixed;
   top: 0;
   left: 0;
@@ -38,7 +34,7 @@
 }
 
 /* кінцевий стан */
-.backdrop.is-hidden {
+.backdrop-team.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -47,10 +43,8 @@
 /* ---------- початковий стан Modal Window ---------- */
 .modal {
   position: absolute;
-  // top: 50%;
   top: 5%;
   left: 50%;
-  // transform: translate(-50%, -50%) scale(1) rotate(0);
   transform: translate(-50%, 0) scale(1) rotate(0);
   opacity: 1;
 
@@ -76,7 +70,7 @@
 }
 
 /* кінцевий стан */
-.backdrop.is-hidden .modal {
+.backdrop-team.is-hidden .modal {
   transform: translate(-50%, -50%) scale(0.3);
   opacity: 0;
 }
