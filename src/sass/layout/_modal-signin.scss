@@ -1,0 +1,129 @@
+
+.modal-signin__backdrop {
+    position: relative;
+    position: fixed;
+    z-index: 100;
+  
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: opacity linear 200ms;
+  
+    overflow-y: scroll;
+}
+.modal-signin__container {
+
+    position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+    margin: 0;
+    padding: 50px 0px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+width: 275px;
+background-color: $white-color;
+box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.144);
+@media screen and (min-width: $tablet) {
+    width: 450px
+  }
+  @media screen and (min-width: $desktop) {
+    width: 600px
+  }
+}
+.modal-signin__close-btn {
+    display: flex;
+    position: absolute;
+    padding: 0;
+    border: none;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    background-color: transparent;
+  }
+
+.modal-signin__form
+ {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.modal-signin__label{
+    display: flex;
+    flex-direction: column;
+gap: 5px;
+    margin-bottom: 30px;
+    font-family: $font-family;
+  font-weight: $regular-weight;
+  font-size: 1.5rem;
+  line-height: 2.3rem;
+  color: $main-color;
+  text-transform: uppercase;
+}
+.modal-signin__title{
+    margin-bottom: 30px;
+    font-family: $font-family;
+    font-weight: $medium-weight;
+    font-size: 2rem;
+    line-height: 2.3rem;
+    color: $main-color;
+    text-transform: uppercase;
+  
+    @media screen and (min-width: $desktop) {
+      font-size: 30px;
+      line-height: calc(35 / 30);
+    }
+}
+.modal-signin__input{
+    border: 1px solid $accent-color;
+    border-radius: 5px;
+    height: 50px;
+    padding-bottom: 0;
+    padding-left: 10px;
+    width: 200px;
+    @media screen and (min-width: $tablet) {
+        width: 300px
+      }
+      @media screen and (min-width: $desktop) {
+        width: 400px
+      }
+}
+.modal-signin__input::placeholder{
+    color: rgb(187, 187, 187);
+}
+
+.modal-signin__button {
+display: flex;
+align-items: center;
+padding: 10px;
+justify-content: center;
+    background-color: $accent-color;
+  color: $white-color;
+  border: none;
+  outline: transparent;
+  width: 150px;
+  border-radius: 5px;
+  font-family: $font-family;
+  font-weight: $medium-weight;
+  font-size: 1.5rem;
+}
+
+.modal-signin__text{
+    font-family: $font-family;
+    font-weight: $regular-weight;
+    font-size: 1.3rem;
+    line-height: 2.3rem;
+    color: $main-color;
+    a {
+        color: $accent-color;
+        font-weight: $medium-weight;
+    }
+}
