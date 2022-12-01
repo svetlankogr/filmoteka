@@ -1,14 +1,34 @@
-(() => {
-  const refs = {
-    openModalBtn: document.querySelector('[data-modal-team-open]'),
-    closeModalBtn: document.querySelector('[data-modal-team-close]'),
-    modal: document.querySelector('[data-modal-team]'),
-  };
+const openModalBtn = document.querySelector('[data-modal-team-open]');
+const modal = document.querySelector('[data-modal-team]');
+const closeModalBtn = document.querySelector('[data-modal-team-close]');
 
-  refs.openModalBtn.addEventListener('click', toggleModal);
-  refs.closeModalBtn.addEventListener('click', toggleModal);
+const onModalOpenBtnElClick = () => {
+  modal.classList.remove('is-hidden');
 
-  function toggleModal() {
-    refs.modal.classList.toggle('is-hidden');
+  document.addEventListener('keydown', onEscKeyDown);
+  modal.addEventListener('click', onBackdropElClick);
+};
+
+const closeModal = () => {
+  modal.classList.add('is-hidden');
+
+  document.removeEventListener('keydown', onEscKeyDown);
+  modal.removeEventListener('click', onBackdropElClick);
+};
+
+const onEscKeyDown = event => {
+  if (event.code === 'Escape') {
+    closeModal();
   }
-})();
+};
+
+const onBackdropElClick = event => {
+  const { target, currentTarget } = event;
+
+  if (target === currentTarget) {
+    closeModal();
+  }
+};
+
+openModalBtn.addEventListener('click', onModalOpenBtnElClick);
+closeModalBtn.addEventListener('click', closeModal);
