@@ -3,8 +3,8 @@ export function createMarkupForLibrary(films, genresList) {
   vote_average = vote_average.toFixed(1);
   const releaseDate = new Date(release_date);
   release_date = releaseDate.getFullYear();
-  return `<li class="films__item">
-      <a href="" class="films__link" role="button" data-filmId="${id}">
+  return `<li class="films__item" data-filmId="${id}">
+      <a href="" class="films__link" role="button">
         <div class="films__img-container">
           <img
             src="https://image.tmdb.org/t/p/original/${poster_path}"
