@@ -82,11 +82,11 @@
   position: relative;
   width: 240px;
   height: 357px;
-
   border-radius: 5px;
   overflow: hidden;
   margin-bottom: 20px;
   cursor: pointer;
+
   @media screen and (min-width: $tablet) {
     width: 264px;
     height: 373px;
@@ -95,15 +95,21 @@
     width: 375px;
     height: 478px;
   }
+
+  &:hover .modal-film__youtube-icon,
+  &:focus .modal-film__youtube-icon {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
 }
 
 .modal-film__youtube-icon {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 60px;
-  height: 60px;
-  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%) scale(1);
+  @include transition(transform);
 }
 
 .modal-film__video {
@@ -115,6 +121,7 @@
   height: 50%;
   max-height: 95%;
   transform: translate(-50%, -50%);
+  @include transition(transform);
 
   @media screen and (min-width: $tablet) {
     width: 830px;
@@ -128,7 +135,7 @@
 
 .modal-film__img {
   width: 100%;
-  object-fit: cover;
+  height: 100%;
 }
 
 .modal-film__title {
