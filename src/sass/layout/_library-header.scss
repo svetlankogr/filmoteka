@@ -59,11 +59,18 @@
 .header__buttons-library {
   width: 129px;
   height: 44px;
-
+  transition: background-color $transition-duration $transition-timing-function,
+    box-shadow $transition-duration $transition-timing-function;
   @media screen and (min-width: 768px) {
     width: 152px;
   }
   @media screen and (min-width: 1200px) {
     width: 148px;
   }
+}
+
+.header__buttons-library:hover {
+  background-color: #ce5702;
+  border-color: #ce5702;
+  box-shadow: 0px 2px 17px rgba(255, 107, 1, 0.6);
 }
