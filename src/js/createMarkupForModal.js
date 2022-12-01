@@ -1,4 +1,9 @@
-export function renderModalMarkup(films, genresList) {
+export function renderModalMarkup(
+  films,
+  genresList,
+  textWatchedBtn,
+  textQueueBtn
+) {
   let {
     id,
     vote_average,
@@ -41,9 +46,9 @@ export function renderModalMarkup(films, genresList) {
       </div>
       <div class="modal-film__wrapper-btn">
         <button type="button" class="modal-film__watched">
-          add to Watched
+          ${textWatchedBtn}
         </button>
-        <button type="button" class="modal-film__queue">add to queue</button>
+        <button type="button" class="modal-film__queue">${textQueueBtn}</button>
       </div>
       </div>`;
 }
