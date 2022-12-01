@@ -49,7 +49,8 @@
   top: 25px;
   left: 50%;
   transform: translateX(-50%);
-  width: 280px;
+  width: 88%;
+  max-width: 480px;
   padding: 48px 20px 40px 20px;
   background: $white-color;
   transition: opacity cubic-bezier(0.4, 0, 0.2, 1) 250ms;
@@ -58,12 +59,13 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
     width: 704px;
+    max-width: $tablet;
     padding: 40px 72px 40px 36px;
   }
   @media screen and (min-width: $desktop) {
     gap: 16px;
+    max-width: $desktop;
     width: 806px;
     padding: 40px 12px;
   }
@@ -79,6 +81,9 @@
 }
 
 .modal-film__img-link {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 240px;
   height: 357px;
 
@@ -212,9 +217,9 @@
   }
 }
 
-.modal-film__watched {
-  background-color: $accent-color;
-  color: $white-color;
-  border: none;
-  outline: transparent;
-}
+// .modal-film__watched {
+//   background-color: $accent-color;
+//   color: $white-color;
+//   border: none;
+//   outline: transparent;
+// }
