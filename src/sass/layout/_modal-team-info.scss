@@ -42,7 +42,7 @@
 }
 
 /* ---------- початковий стан Modal Window ---------- */
-.modal {
+.modal-team {
   position: absolute;
   top: 5%;
   left: 50%;
@@ -54,8 +54,8 @@
 
   background-color: var(--main-white);
   border-radius: 4px;
-  
-  transition: transform var(--anim-fast) 400ms, opacity var(--anim-fast) 400ms;
+
+  // transition: transform var(--anim-fast) 400ms, opacity var(--anim-fast) 400ms;
 
   @media screen and (min-width: 480px) {
     max-width: 450px;
@@ -70,7 +70,7 @@
 }
 
 /* кінцевий стан */
-.backdrop-team.is-hidden .modal {
+.backdrop-team.is-hidden .modal-team {
   transform: translate(-50%, -50%) scale(0.3);
   opacity: 0;
 }
