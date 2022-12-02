@@ -25,7 +25,8 @@ footer {
   .footer__team--button {
     text-decoration: underline;
     color: currentColor;
-    background-color: #f7f7f7;
+    // background-color: #f7f7f7;
+    background-color: transparent;
   }
 }
 @media screen and (min-width: 768px) {
