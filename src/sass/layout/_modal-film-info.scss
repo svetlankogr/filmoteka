@@ -33,6 +33,14 @@
   width: 14px;
   height: 14px;
   background-color: transparent;
+  // transition: transform cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+  transition: fill $transition-duration $transition-timing-function,
+    transform $transition-duration $transition-timing-function;
+  &:hover,
+  &:focus {
+    fill: $accent-color;
+    transform: scale(1.2);
+  }
 }
 .modal-film__container {
   @media screen and (min-width: $tablet) {
@@ -49,8 +57,8 @@
   top: 25px;
   left: 50%;
   transform: translateX(-50%);
-  width: 280px;
-  max-width: 95%;
+  width: 88%;
+  max-width: 480px;
   padding: 48px 20px 40px 20px;
   background: $white-color;
   transition: opacity cubic-bezier(0.4, 0, 0.2, 1) 250ms;
@@ -59,12 +67,13 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
     width: 704px;
+    max-width: $tablet;
     padding: 40px 72px 40px 36px;
   }
   @media screen and (min-width: $desktop) {
     gap: 16px;
+    max-width: $desktop;
     width: 806px;
     padding: 40px 12px;
   }
@@ -80,6 +89,9 @@
 }
 
 .modal-film__img-link {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   width: 240px;
   height: 357px;
@@ -155,11 +167,6 @@
   }
 }
 
-.modal-film__item-value {
-  &--uppercase {
-    text-transform: uppercase;
-  }
-}
 .modal-film__list {
   margin-bottom: 20px;
 }
@@ -167,7 +174,7 @@
 .modal-film__item {
   display: flex;
   margin-bottom: 8px;
-  gap: 38px;
+  justify-content: space-between;
   &:last-child {
     margin-bottom: 0;
   }
@@ -184,6 +191,7 @@
 
 .modal-film__item-value {
   line-height: calc(16 / 12);
+  width: 60%;
   span {
     display: inline-block;
     width: 36px;
@@ -192,6 +200,9 @@
     color: $white-color;
     background: $accent-color;
     border-radius: 5px;
+  }
+  &--uppercase {
+    text-transform: uppercase;
   }
 }
 
@@ -214,8 +225,10 @@
 .modal-film__wrapper-btn {
   display: flex;
   gap: 20px;
+  justify-content: center;
   @media screen and (min-width: $desktop) {
     margin-left: 4px;
+    justify-content: start;
   }
 }
 
@@ -226,14 +239,39 @@
   background-color: transparent;
   border: 1px solid $main-color;
   color: $main-color;
-  @media screen and (min-width: $tablet) {
-    width: 125px;
+  font-size: 1.1rem;
+  transition: color cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+  // transition: background-color $transition-duration $transition-timing-function,
+  //   color $transition-duration $transition-timing-function,
+  //   border-color $transition-duration $transition-timing-function,
+  //   box-shadow $transition-duration $transition-timing-function;
+  &:hover {
+    background-color: #ce5702;
+    border-color: #ce5702;
+    color: $white-color;
+    box-shadow: 0 2px 17px #ff6b0199;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 155px;
   }
 }
 
-.modal-film__watched {
+.js-active {
+  @extend %buttons;
+  width: 110px;
+  background-color: transparent;
+  border: 1px solid $main-color;
+  color: $main-color;
   background-color: $accent-color;
+  border-color: $accent-color;
+  box-shadow: 0 2px 17px #ff6b0199;
   color: $white-color;
-  border: none;
-  outline: transparent;
+  font-size: 1.1rem;
+  @media screen and (min-width: $desktop) {
+    width: 155px;
+  }
+}
+
+.film__img--nothing {
+  margin: 0 auto 20px;
 }

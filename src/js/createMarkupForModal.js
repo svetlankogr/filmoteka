@@ -38,7 +38,7 @@ export function renderModalMarkup(
         </li>
         <li class="modal-film__item">
           <p class="modal-film__item-name">Original Title</p>
-          <p class="modal-film__item-value--uppercase">${original_title}</p>
+          <p class="modal-film__item-value modal-film__item-value--uppercase">${original_title}</p>
         </li>
         <li class="modal-film__item">
           <p class="modal-film__item-name">Genre</p>

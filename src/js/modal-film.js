@@ -2,7 +2,9 @@ import { Notify } from 'notiflix';
 import { getFilmById } from './api';
 import { renderModalMarkup } from './createMarkupForModal';
 import { onImageClickOpenVideo } from './modal-video-trailer';
+import nothing from '../images/theres-nothing-to-see-here.gif';
 
+const container = document.querySelector('.films').querySelector('.container');
 const containerForModal = document.querySelector('.js-container');
 const filmsList = document.querySelector('.films__list');
 const modal = document.querySelector('[data-modal]');
@@ -16,6 +18,7 @@ export const QUEUE_KEY = 'queue';
 let textWatchedBtn;
 let textQueueBtn;
 let id;
+let filmCardId;
 const arrOfWatchedId = [];
 const arrOfQueueId = [];
 
@@ -23,6 +26,7 @@ filmsList.addEventListener('click', onFilmClick);
 closeModalBtn.addEventListener('click', onCloseModalClick);
 modal.addEventListener('click', onBackdropCloseClick);
 
+// OPEN MODAL
 async function onFilmClick(e) {
   e.preventDefault();
   spinner.hidden = false;
@@ -33,7 +37,7 @@ async function onFilmClick(e) {
   }
 
   modal.classList.remove('is-hidden');
-  const item = e.target.closest('a');
+  const item = e.target.closest('li');
   id = item.dataset.filmid;
 
   try {
@@ -54,14 +58,24 @@ async function onFilmClick(e) {
 
     document.addEventListener('keydown', onEscKeydown);
     containerForModal.innerHTML = markUp;
-    const imageLinkRef = document.querySelector('.modal-film__img-link')
+    const imageLinkRef = document.querySelector('.modal-film__img-link');
     imageLinkRef.addEventListener('click', () => onImageClickOpenVideo(id));
 
     const addToWatchedBtn = document.querySelector('.modal-film__watched');
     const addToQueueBtn = document.querySelector('.modal-film__queue');
-
-    addToWatchedBtn.addEventListener('click', onAddToWatchedBtnClick);
-    addToQueueBtn.addEventListener('click', onAddToQueueBtnClick);
+    checkActiveClass(arrOfWatchedId, addToWatchedBtn);
+    checkActiveClass(arrOfQueueId, addToQueueBtn);
+    addToWatchedBtn.addEventListener('click', e =>
+      onBtnClickAddToWatchedOrQueue(
+        e,
+        arrOfWatchedId,
+        WATCHED_KEY,
+        textWatchedBtn
+      )
+    );
+    addToQueueBtn.addEventListener('click', e =>
+      onBtnClickAddToWatchedOrQueue(e, arrOfQueueId, QUEUE_KEY, textQueueBtn)
+    );
   } catch (error) {
     Notify.failure(error.message);
     onCloseModalClick();
@@ -71,7 +85,6 @@ async function onFilmClick(e) {
 }
 
 // CLOSE MODAL
-
 export function onCloseModalClick() {
   if (!modalVideo.classList.contains('is-hidden')) {
     modalVideo.innerHTML = '';
@@ -82,13 +95,11 @@ export function onCloseModalClick() {
   document.removeEventListener('keydown', onEscKeydown);
   document.removeEventListener('click', onBackdropCloseClick);
 }
-
 function onBackdropCloseClick(e) {
   if (e.target === e.currentTarget) {
     onCloseModalClick();
   }
 }
-
 function onEscKeydown(e) {
   if (e.code === 'Escape' && !modal.classList.contains('is-hidden')) {
     onCloseModalClick();
@@ -96,7 +107,6 @@ function onEscKeydown(e) {
 }
 
 // FUNCTION TO GET ALL GENRES
-
 export function getAllGenres(array) {
   const allGenres = [];
   array.map(el => {
@@ -105,48 +115,32 @@ export function getAllGenres(array) {
   return allGenres.join(', ');
 }
 
-//ADD-REMOVE TO LOCAL STORAGE
-
-function onAddToWatchedBtnClick(e) {
-  if (arrOfWatchedId.includes(id)) {
-    if (arrOfWatchedId.length === 0) {
-      markupForEmptyLibrary();
+//ADD-REMOVE TO-FROM LOCAL STORAGE
+function onBtnClickAddToWatchedOrQueue(e, arr, key, str) {
+  if (arr.includes(id)) {
+    const index = arr.indexOf(id);
+    arr.splice(index, 1);
+    e.target.textContent = `add to ${key}`;
+    e.target.classList.add('modal-film__watched');
+    e.target.classList.remove('js-active');
+    if (!arr.length && window.location.pathname === '/library.html') {
+      rendermarkupEmptyLibrary();
     }
-    const index = arrOfWatchedId.indexOf(id);
-    if (index !== -1) {
-      arrOfWatchedId.splice(index, 1);
-      textWatchedBtn = 'add to watched';
-      e.target.textContent = textWatchedBtn;
-      Notify.success('Film successfully removed from "Watched"')
-    }
-  } else {
-    arrOfWatchedId.push(id);
-    textWatchedBtn = 'remove from watched';
-    e.target.textContent = textWatchedBtn;
-    Notify.success('Film successfully added to "Watched"')
-  }
-  localStorage.setItem(WATCHED_KEY, JSON.stringify(arrOfWatchedId));
-}
-
-function onAddToQueueBtnClick(e) {
-  if (arrOfQueueId.includes(id)) {
-    if (arrOfQueueId.length === 0) {
-      markupForEmptyLibrary();
-    }
-    const index = arrOfQueueId.indexOf(id);
-    if (index !== -1) {
-      arrOfQueueId.splice(index, 1);
-      textQueueBtn = 'add to queue';
-      e.target.textContent = textQueueBtn;
-      Notify.success('Film successfully removed from "Queue"')
+    Notify.success(`Film successfully removed from ${str}`);
+    if (window.location.pathname === '/library.html') {
+      filmCardId = filmsList.querySelector(`[data-filmId="${id}"]`);
+      filmCardId.remove();
+      onCloseModalClick();
     }
   } else {
-    arrOfQueueId.push(id);
-    textQueueBtn = 'remove from queue';
-    e.target.textContent = textQueueBtn;
-    Notify.success('Film successfully added to "queue"')
+    arr.push(id);
+    e.target.textContent = `remove to ${key}`;
+    console.log(str);
+    e.target.classList.remove('modal-film__watched');
+    e.target.classList.add('js-active');
+    Notify.success(`Film successfully added to ${str}`);
   }
-  localStorage.setItem(QUEUE_KEY, JSON.stringify(arrOfQueueId));
+  localStorage.setItem(key, JSON.stringify(arr));
 }
 
 // SAVE LOCAL STORAGE
@@ -160,4 +154,24 @@ function savedDataFromLocalStorage(key, arrOfId) {
       return arrOfId.push(el);
     });
   }
+}
+
+// FUNCTION TO CHECK ACTIVE BTN ON MODAL
+function checkActiveClass(arr, btn) {
+  arr.includes(id)
+    ? btn.classList.add('js-active')
+    : btn.classList.add('modal-film__watched');
+}
+
+// FUNCTION FOR RENDER MARKUP FOR EMPTY LIBRARY
+export function rendermarkupEmptyLibrary() {
+  const imgRef = container.querySelector('.film__img--nothing');
+  if (imgRef) {
+    return;
+  }
+  const markupEmptyLibrary = `
+  <img class="film__img--nothing" src="${nothing}" alt="nothingHere">
+  `;
+
+  container.insertAdjacentHTML('afterbegin', markupEmptyLibrary);
 }
