@@ -15,13 +15,16 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <include src="./partials/main-header.html"></include>
-
-    <include src="./partials/spinner.html"></include>
-    <include src="./partials/films.html"></include>    
-    <include src="./partials/footer.html"></include>
-    <include src="./partials/modal-film-info.html"></include>
-    <include src="./partials/modal-team-info.html"></include>
-    <include src="./partials/modal-signin.html"></include>
+    <div class="main-wrapper">
+      <include src="./partials/main-header.html"></include>
+      <main>
+        <include src="./partials/spinner.html"></include>
+        <include src="./partials/films.html"></include>
+        <include src="./partials/modal-film-info.html"></include>
+        <include src="./partials/modal-team-info.html"></include>
+        <include src="./partials/modal-signin.html"></include>
+      </main>
+      <include src="./partials/footer.html"></include>
+    </div>
   </body>
 </html>

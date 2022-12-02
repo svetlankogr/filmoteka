@@ -2,12 +2,12 @@ import { getFilmById } from './api';
 import { createMarkupForLibrary } from './createMarkupForLibrary';
 import { getAllGenres } from './modal-film';
 import { WATCHED_KEY, QUEUE_KEY } from './modal-film';
-import { rendermarkupEmptyLibrary } from './modal-film';
+import { renderMarkupEmptyLibrary } from './modal-film';
 
 const watchedBtn = document.querySelector('.header__buttons-library--watched');
 const queueBtn = document.querySelector('.header__buttons-library--queue');
 const filmsList = document.querySelector('.films__list');
-const spinner = document.querySelector('.circ');
+const spinner = document.querySelector('.js-spinner');
 const container = document.querySelector('.films').querySelector('.container');
 
 watchedBtn.addEventListener('click', onWatchedBtnClick);
@@ -43,7 +43,7 @@ export function loadFilmsForLibrary(key) {
     imgRef[0].remove();
   }
   if (!parsedFilms || !parsedFilms.length) {
-    rendermarkupEmptyLibrary();
+    renderMarkupEmptyLibrary();
   }
   if (parsedFilms) {
     parsedFilms.forEach(async el => {

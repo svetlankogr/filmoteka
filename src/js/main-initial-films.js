@@ -3,7 +3,7 @@ import { fetchGenresList, fetchTopFilms } from './api';
 
 const list = document.querySelector('.films__list');
 let genresList = null;
-const spinner = document.querySelector('.circ');
+const spinner = document.querySelector('.js-spinner');
 
 (async () => {
   try {
