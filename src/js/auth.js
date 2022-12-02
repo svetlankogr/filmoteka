@@ -1,22 +1,35 @@
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-} from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { Notify } from 'notiflix';
 import { auth } from './firebase';
 import { isAuthCheck } from './isAuth-check';
 
+const account = document.querySelector('.account__link');
+const signin = document.querySelector('.modal-signin__backdrop');
+const signinClose = document.querySelector('.modal-signin__close-btn');
 const btnRef = document.querySelector('.modal-signin__button');
-export const TOKEN_KEY = 'token'
-const token = localStorage.getItem(TOKEN_KEY);
+export const TOKEN_KEY = 'token';
 
-if(token) {
-  btnRef.removeEventListener('click', handleGoogleSignIn);
-  btnRef.addEventListener('click', handleSignOut);
-} else {
-  btnRef.removeEventListener('click', handleSignOut);
-  btnRef.addEventListener('click', handleGoogleSignIn);
+account.addEventListener('click', opensigninModal);
+signinClose.addEventListener('click', closesigninModal);
+btnRef.addEventListener('click', handleGoogleSignIn);
+
+export function changeEventHandler() {
+  const token = localStorage.getItem(TOKEN_KEY);
+  if (token) {
+    account.removeEventListener('click', opensigninModal);
+    account.addEventListener('click', handleSignOut);
+    return;
+  }
+  account.removeEventListener('click', handleSignOut);
+  account.addEventListener('click', opensigninModal);
+}
+
+export function opensigninModal() {
+  signin.classList.remove('is-hidden');
+}
+
+export function closesigninModal() {
+  signin.classList.add('is-hidden');
 }
 
 const googleSignIn = () => {
@@ -42,11 +55,10 @@ async function handleGoogleSignIn() {
 
 async function handleSignOut() {
   try {
-    const res = await signOut(auth)
-    console.log(res)
+    await signOut(auth);
     localStorage.removeItem(TOKEN_KEY);
 
-    Notify.success(`Hi ${user}, you are welcome! ❤`);
+    Notify.success(`You logged out successfully`);
     isAuthCheck();
   } catch (error) {
     Notify.failure(error.message);
