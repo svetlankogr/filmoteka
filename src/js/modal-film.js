@@ -71,9 +71,7 @@ async function onFilmClick(e) {
 
 // Set Button text
 function setBtnText(arr, id) {
-  return arr.includes(id)
-      ? 'remove from queue'
-      : 'add to queue';
+  return arr.includes(id) ? 'remove from queue' : 'add to queue';
 }
 
 // CLOSE MODAL
@@ -113,7 +111,7 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key) {
     const index = arr.indexOf(id);
     arr.splice(index, 1);
     e.target.textContent = `add to ${key}`;
-    e.target.classList.add('modal-film__watched');
+    e.target.classList.add(`modal-film__${key}`);
     e.target.classList.remove('js-active');
     if (!arr.length && window.location.pathname === '/library.html') {
       renderMarkupEmptyLibrary();
@@ -127,7 +125,7 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key) {
   } else {
     arr.push(id);
     e.target.textContent = `remove to ${key}`;
-    e.target.classList.remove('modal-film__watched');
+    e.target.classList.remove(`modal-film__${key}`);
     e.target.classList.add('js-active');
     Notify.success(`Film successfully added to ${key}`);
   }

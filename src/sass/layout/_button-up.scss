@@ -1,0 +1,24 @@
+.button__up {
+  border: none;
+  position: relative;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba($color: $accent-color, $alpha: 0.9);
+  border-radius: 15px;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  transform: rotateZ(-90deg);
+  stroke: $white-color;
+  //   box-shadow: 0 0 5px 0 green($color: #000000);
+
+  @media screen and (min-width: 768px) {
+    width: 60px;
+    height: 60px;
+  }
+}
