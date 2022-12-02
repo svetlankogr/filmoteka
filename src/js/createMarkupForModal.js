@@ -15,15 +15,12 @@ export function renderModalMarkup(
   } = films;
   vote_average = vote_average.toFixed(1);
 
-  // const svgHref = new URL('../images/icons.svg#youtube', import.meta.url)
-      // <svg class="modal-film__youtube-icon">
-      //   <use href="${svgHref}"></use>
-      // </svg>
-
   return `<div class="modal-film__container data-id=${id}">
     <a class="modal-film__img-link" data-image-link>
       <img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${original_title}" class="modal-film__img" />
-      <img src="https://www.freepnglogos.com/uploads/youtube-logo-icon-png-11.png" class="modal-film__youtube-icon" />
+      <svg class="modal-film__youtube-icon">
+        <use href="/icons.adfc4680.svg#youtube"></use>
+      </svg>
     </a>
     <div class="modal-film__wrapper-info">
       <h1 class="modal-film__title">${original_title}</h1>
@@ -38,7 +35,7 @@ export function renderModalMarkup(
         </li>
         <li class="modal-film__item">
           <p class="modal-film__item-name">Original Title</p>
-          <p class="modal-film__item-value--uppercase">${original_title}</p>
+          <p class="modal-film__item-value modal-film__item-value--uppercase">${original_title}</p>
         </li>
         <li class="modal-film__item">
           <p class="modal-film__item-name">Genre</p>

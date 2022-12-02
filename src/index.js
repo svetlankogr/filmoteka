@@ -3,3 +3,4 @@ import './js/search-films';
 import './js/modal-film';
 import './js/modal-team';
 import './js/theme-switcher';
+import './js/modal-singin'
