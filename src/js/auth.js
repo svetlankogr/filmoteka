@@ -1,17 +1,23 @@
 import {
   GoogleAuthProvider,
   signInWithPopup,
-  signInWithRedirect,
   signOut,
 } from 'firebase/auth';
 import { Notify } from 'notiflix';
 import { auth } from './firebase';
 import { isAuthCheck } from './isAuth-check';
 
-export const TOKEN_KEY = 'token'
 const btnRef = document.querySelector('.modal-signin__button');
+export const TOKEN_KEY = 'token'
+const token = localStorage.getItem(TOKEN_KEY);
 
-btnRef.addEventListener('click', handleGoogleSignIn);
+if(token) {
+  btnRef.removeEventListener('click', handleGoogleSignIn);
+  btnRef.addEventListener('click', handleSignOut);
+} else {
+  btnRef.removeEventListener('click', handleSignOut);
+  btnRef.addEventListener('click', handleGoogleSignIn);
+}
 
 const googleSignIn = () => {
   const provider = new GoogleAuthProvider();
@@ -34,12 +40,15 @@ async function handleGoogleSignIn() {
   }
 }
 
-function handleSignOut() {
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-    })
-    .catch(error => {
-      // An error happened.
-    });
+async function handleSignOut() {
+  try {
+    const res = await signOut(auth)
+    console.log(res)
+    localStorage.removeItem(TOKEN_KEY);
+
+    Notify.success(`Hi ${user}, you are welcome! ❤`);
+    isAuthCheck();
+  } catch (error) {
+    Notify.failure(error.message);
+  }
 }

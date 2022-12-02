@@ -6,7 +6,7 @@ import nothing from '../images/theres-nothing-to-see-here.gif';
 
 const container = document.querySelector('.films .container');
 const containerForModal = document.querySelector('.js-container');
-const filmsList = document.querySelector('.films__list');
+const filmsList = document.getElementsByClassName('films__list');
 const modal = document.querySelector('[data-modal]');
 const modalVideo = document.querySelector('[data-modal-video]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
@@ -21,12 +21,13 @@ let filmCardId;
 const arrOfWatchedId = [];
 const arrOfQueueId = [];
 
-filmsList.addEventListener('click', onFilmClick);
+filmsList[0].addEventListener('click', onFilmClick);
 closeModalBtn.addEventListener('click', onCloseModalClick);
 modal.addEventListener('click', onBackdropCloseClick);
+const TOKEN_KEY = 'token'
 
 // OPEN MODAL
-async function onFilmClick(e) {
+export async function onFilmClick(e) {
   e.preventDefault();
   if (e.target === e.currentTarget) {
     return;
@@ -49,12 +50,17 @@ async function onFilmClick(e) {
 
     document.addEventListener('keydown', onEscKeydown);
     containerForModal.innerHTML = markUp;
+    const addToWatchedBtn = document.querySelector('.modal-film__watched');
+    const addToQueueBtn = document.querySelector('.modal-film__queue');
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (!token) {
+      addToWatchedBtn.hidden = true;
+      addToQueueBtn.hidden = true;
+    }
     modal.classList.remove('is-hidden');
     const imageLinkRef = document.querySelector('.modal-film__img-link');
     imageLinkRef.addEventListener('click', () => onImageClickOpenVideo(id));
 
-    const addToWatchedBtn = document.querySelector('.modal-film__watched');
-    const addToQueueBtn = document.querySelector('.modal-film__queue');
     checkActiveClass(arrOfWatchedId, addToWatchedBtn);
     checkActiveClass(arrOfQueueId, addToQueueBtn);
     addToWatchedBtn.addEventListener('click', e =>
@@ -71,9 +77,7 @@ async function onFilmClick(e) {
 
 // Set Button text
 function setBtnText(arr, id) {
-  return arr.includes(id)
-      ? 'remove from queue'
-      : 'add to queue';
+  return arr.includes(id) ? 'remove from queue' : 'add to queue';
 }
 
 // CLOSE MODAL
@@ -120,7 +124,7 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key) {
     }
     Notify.success(`Film successfully removed from ${key}`);
     if (window.location.pathname === '/library.html') {
-      filmCardId = filmsList.querySelector(`[data-filmId="${id}"]`);
+      filmCardId = filmsList[0].querySelector(`[data-filmId="${id}"]`);
       filmCardId.remove();
       onCloseModalClick();
     }
