@@ -4,7 +4,6 @@ const closeModalBtn = document.querySelector('[data-modal-team-close]');
 
 const onModalOpenBtnElClick = () => {
   modal.classList.remove('is-hidden');
-
   document.addEventListener('keydown', onEscKeyDown);
   modal.addEventListener('click', onBackdropElClick);
 };

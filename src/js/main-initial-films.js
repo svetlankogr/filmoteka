@@ -3,7 +3,7 @@ import { fetchGenresList, fetchTopFilms } from './api';
 
 const list = document.querySelector('.films__list');
 let genresList = null;
-const spinner = document.querySelector('.circ');
+const spinner = document.querySelector('.js-spinner');
 
 (async () => {
   try {
@@ -49,8 +49,8 @@ export function createFilmItemMarkup(filmArray) {
         : 'https://www.reelviews.net/resources/img/default_poster.jpg';
 
       return `
-    <li class="films__item">
-      <a href="" class="films__link" role="button" data-filmId="${el.id}">
+    <li class="films__item" data-filmId="${el.id}">
+      <a href="" class="films__link" role="button">
         <div class="films__img-container">
           <img
             src="${imageSrc}"

@@ -4,3 +4,4 @@ import './js/modal-film';
 import './js/modal-team';
 import './js/firebase'
 import './js/auth'
+import './js/modal-singin'
