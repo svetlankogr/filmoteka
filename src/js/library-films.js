@@ -12,6 +12,9 @@ const filmsList = document.getElementsByClassName('films__list');
 const watchedBtn = document.querySelector('.header__buttons-library--watched');
 const queueBtn = document.querySelector('.header__buttons-library--queue');
 
+watchedBtn && watchedBtn.addEventListener('click', onWatchedBtnClick);
+queueBtn && queueBtn.addEventListener('click', onQueueBtnClick);
+
 (async () => {
   isAuthCheck();
 })();
@@ -22,6 +25,7 @@ function onWatchedBtnClick() {
   queueBtn.classList.remove('btn-accent');
   queueBtn.classList.add('btn-main');
   filmsList[0].innerHTML = '';
+  filmsList[0].setAttribute('data-page', WATCHED_KEY)
   loadFilmsForLibrary(WATCHED_KEY);
 }
 
@@ -31,6 +35,7 @@ function onQueueBtnClick() {
   watchedBtn.classList.remove('btn-accent');
   watchedBtn.classList.add('btn-main');
   filmsList[0].innerHTML = '';
+  filmsList[0].setAttribute('data-page', QUEUE_KEY)
   loadFilmsForLibrary(QUEUE_KEY);
 }
 

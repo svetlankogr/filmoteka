@@ -39,8 +39,8 @@ export async function onFilmClick(e) {
   try {
     const { data } = await getFilmById(id);
     const allGenres = getAllGenres(data.genres);
-    textWatchedBtn = setBtnText(arrOfWatchedId, id);
-    textQueueBtn = setBtnText(arrOfQueueId, id);
+    textWatchedBtn = setBtnText(arrOfWatchedId, id, WATCHED_KEY);
+    textQueueBtn = setBtnText(arrOfQueueId, id, QUEUE_KEY);
     const markUp = renderModalMarkup(
       data,
       allGenres,
@@ -63,11 +63,15 @@ export async function onFilmClick(e) {
 
     checkActiveClass(arrOfWatchedId, addToWatchedBtn);
     checkActiveClass(arrOfQueueId, addToQueueBtn);
+    let currentArr = arrOfWatchedId;
+    if(filmsList[0].dataset.page === QUEUE_KEY) {
+      currentArr = arrOfQueueId;
+    }
     addToWatchedBtn.addEventListener('click', e =>
-      onBtnClickAddToWatchedOrQueue(e, arrOfWatchedId, WATCHED_KEY)
+      onBtnClickAddToWatchedOrQueue(e, arrOfWatchedId, WATCHED_KEY, currentArr)
     );
     addToQueueBtn.addEventListener('click', e =>
-      onBtnClickAddToWatchedOrQueue(e, arrOfQueueId, QUEUE_KEY)
+      onBtnClickAddToWatchedOrQueue(e, arrOfQueueId, QUEUE_KEY, currentArr)
     );
   } catch (error) {
     Notify.failure(error.message);
@@ -76,8 +80,8 @@ export async function onFilmClick(e) {
 }
 
 // Set Button text
-function setBtnText(arr, id) {
-  return arr.includes(id) ? 'remove from queue' : 'add to queue';
+function setBtnText(arr, id, key) {
+  return arr.includes(id) ? `remove from ${key}` : `add to ${key}`;
 }
 
 // CLOSE MODAL
@@ -112,26 +116,29 @@ export function getAllGenres(array) {
 }
 
 //ADD-REMOVE TO-FROM LOCAL STORAGE
-function onBtnClickAddToWatchedOrQueue(e, arr, key) {
+function onBtnClickAddToWatchedOrQueue(e, arr, key, currArr) {
+  console.log(arr)
   if (arr.includes(id)) {
     const index = arr.indexOf(id);
     arr.splice(index, 1);
     e.target.textContent = `add to ${key}`;
-    e.target.classList.add('modal-film__watched');
+    e.target.classList.add(`modal-film__${key}`);
     e.target.classList.remove('js-active');
-    if (!arr.length && window.location.pathname === '/library.html') {
+    if (!currArr.length && window.location.pathname === '/library.html') {
       renderMarkupEmptyLibrary();
     }
     Notify.success(`Film successfully removed from ${key}`);
     if (window.location.pathname === '/library.html') {
-      filmCardId = filmsList[0].querySelector(`[data-filmId="${id}"]`);
-      filmCardId.remove();
-      onCloseModalClick();
+      if(arr === currArr) {
+        filmCardId = filmsList[0].querySelector(`[data-filmId="${id}"]`);
+        filmCardId.remove();
+        onCloseModalClick();
+      }
     }
   } else {
     arr.push(id);
     e.target.textContent = `remove to ${key}`;
-    e.target.classList.remove('modal-film__watched');
+    e.target.classList.remove(`modal-film__${key}`);
     e.target.classList.add('js-active');
     Notify.success(`Film successfully added to ${key}`);
   }
