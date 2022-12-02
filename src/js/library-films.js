@@ -8,6 +8,7 @@ const watchedBtn = document.querySelector('.header__buttons-library--watched');
 const queueBtn = document.querySelector('.header__buttons-library--queue');
 const filmsList = document.querySelector('.films__list');
 const spinner = document.querySelector('.circ');
+const container = document.querySelector('.films').querySelector('.container');
 
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn.addEventListener('click', onQueueBtnClick);
@@ -37,6 +38,10 @@ function onQueueBtnClick() {
 export function loadFilmsForLibrary(key) {
   const films = localStorage.getItem(key);
   const parsedFilms = JSON.parse(films);
+  const imgRef = container.getElementsByClassName('film__img--nothing');
+  if (imgRef[0]) {
+    imgRef[0].remove();
+  }
   if (!parsedFilms || !parsedFilms.length) {
     rendermarkupEmptyLibrary();
   }

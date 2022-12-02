@@ -121,7 +121,6 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key, str) {
     const index = arr.indexOf(id);
     arr.splice(index, 1);
     e.target.textContent = `add to ${key}`;
-    console.log(str);
     e.target.classList.add('modal-film__watched');
     e.target.classList.remove('js-active');
     if (!arr.length && window.location.pathname === '/library.html') {
@@ -166,15 +165,13 @@ function checkActiveClass(arr, btn) {
 
 // FUNCTION FOR RENDER MARKUP FOR EMPTY LIBRARY
 export function rendermarkupEmptyLibrary() {
-  const divRef = container.getElementsByClassName('wrap-div');
-  if (divRef.length) {
+  const imgRef = container.querySelector('.film__img--nothing');
+  if (imgRef) {
     return;
   }
-  const div = document.createElement('div');
-  div.classList.add('wrap-div');
   const markupEmptyLibrary = `
   <img class="film__img--nothing" src="${nothing}" alt="nothingHere">
   `;
-  div.append(markupEmptyLibrary);
-  filmsList.insertAdjacentHTML('afterbegin', markupEmptyLibrary);
+
+  container.insertAdjacentHTML('afterbegin', markupEmptyLibrary);
 }
