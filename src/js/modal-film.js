@@ -4,7 +4,7 @@ import { renderModalMarkup } from './createMarkupForModal';
 import { onImageClickOpenVideo } from './modal-video-trailer';
 import nothing from '../images/theres-nothing-to-see-here.gif';
 
-const container = document.querySelector('.films').querySelector('.container');
+const container = document.querySelector('.films .container');
 const containerForModal = document.querySelector('.js-container');
 const filmsList = document.querySelector('.films__list');
 const modal = document.querySelector('[data-modal]');

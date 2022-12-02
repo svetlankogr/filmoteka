@@ -4,12 +4,11 @@ const signinClose = document.querySelector('.modal-signin__close-btn');
 
 account.addEventListener('click', opensigninModal);
 signinClose.addEventListener('click', closesigninModal);
+
 function opensigninModal() {
   signin.classList.remove('is-hidden');
-  return;
 }
 
-function closesigninModal() {
+export function closesigninModal() {
   signin.classList.add('is-hidden');
-  return;
 }

@@ -1,9 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 const firebaseConfig = {
   apiKey: "AIzaSyB5ZvttA57I6zGlx22nW0KvqoMSGP6i8vE",
   authDomain: "filmoteka-production-4e396.firebaseapp.com",
