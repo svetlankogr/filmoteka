@@ -10,7 +10,6 @@ const filmsList = document.querySelector('.films__list');
 const modal = document.querySelector('[data-modal]');
 const modalVideo = document.querySelector('[data-modal-video]');
 const closeModalBtn = document.querySelector('[data-modal-close]');
-const spinner = document.querySelector('.circ');
 
 export const WATCHED_KEY = 'watched';
 export const QUEUE_KEY = 'queue';
@@ -29,26 +28,18 @@ modal.addEventListener('click', onBackdropCloseClick);
 // OPEN MODAL
 async function onFilmClick(e) {
   e.preventDefault();
-  spinner.hidden = false;
-  containerForModal.innerHTML = '';
-
-  if (e.target.nodeName === 'UL') {
+  if (e.target === e.currentTarget) {
     return;
   }
 
-  modal.classList.remove('is-hidden');
   const item = e.target.closest('li');
   id = item.dataset.filmid;
 
   try {
     const { data } = await getFilmById(id);
     const allGenres = getAllGenres(data.genres);
-    textWatchedBtn = arrOfWatchedId.includes(id)
-      ? 'remove from watched'
-      : 'add to watched';
-    textQueueBtn = arrOfQueueId.includes(id)
-      ? 'remove from queue'
-      : 'add to queue';
+    textWatchedBtn = setBtnText(arrOfWatchedId, id);
+    textQueueBtn = setBtnText(arrOfQueueId, id);
     const markUp = renderModalMarkup(
       data,
       allGenres,
@@ -58,6 +49,7 @@ async function onFilmClick(e) {
 
     document.addEventListener('keydown', onEscKeydown);
     containerForModal.innerHTML = markUp;
+    modal.classList.remove('is-hidden');
     const imageLinkRef = document.querySelector('.modal-film__img-link');
     imageLinkRef.addEventListener('click', () => onImageClickOpenVideo(id));
 
@@ -66,22 +58,22 @@ async function onFilmClick(e) {
     checkActiveClass(arrOfWatchedId, addToWatchedBtn);
     checkActiveClass(arrOfQueueId, addToQueueBtn);
     addToWatchedBtn.addEventListener('click', e =>
-      onBtnClickAddToWatchedOrQueue(
-        e,
-        arrOfWatchedId,
-        WATCHED_KEY,
-        textWatchedBtn
-      )
+      onBtnClickAddToWatchedOrQueue(e, arrOfWatchedId, WATCHED_KEY)
     );
     addToQueueBtn.addEventListener('click', e =>
-      onBtnClickAddToWatchedOrQueue(e, arrOfQueueId, QUEUE_KEY, textQueueBtn)
+      onBtnClickAddToWatchedOrQueue(e, arrOfQueueId, QUEUE_KEY)
     );
   } catch (error) {
     Notify.failure(error.message);
     onCloseModalClick();
-  } finally {
-    spinner.hidden = true;
   }
+}
+
+// Set Button text
+function setBtnText(arr, id) {
+  return arr.includes(id)
+      ? 'remove from queue'
+      : 'add to queue';
 }
 
 // CLOSE MODAL
@@ -116,7 +108,7 @@ export function getAllGenres(array) {
 }
 
 //ADD-REMOVE TO-FROM LOCAL STORAGE
-function onBtnClickAddToWatchedOrQueue(e, arr, key, str) {
+function onBtnClickAddToWatchedOrQueue(e, arr, key) {
   if (arr.includes(id)) {
     const index = arr.indexOf(id);
     arr.splice(index, 1);
@@ -124,9 +116,9 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key, str) {
     e.target.classList.add('modal-film__watched');
     e.target.classList.remove('js-active');
     if (!arr.length && window.location.pathname === '/library.html') {
-      rendermarkupEmptyLibrary();
+      renderMarkupEmptyLibrary();
     }
-    Notify.success(`Film successfully removed from ${str}`);
+    Notify.success(`Film successfully removed from ${key}`);
     if (window.location.pathname === '/library.html') {
       filmCardId = filmsList.querySelector(`[data-filmId="${id}"]`);
       filmCardId.remove();
@@ -135,17 +127,14 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key, str) {
   } else {
     arr.push(id);
     e.target.textContent = `remove to ${key}`;
-    console.log(str);
     e.target.classList.remove('modal-film__watched');
     e.target.classList.add('js-active');
-    Notify.success(`Film successfully added to ${str}`);
+    Notify.success(`Film successfully added to ${key}`);
   }
   localStorage.setItem(key, JSON.stringify(arr));
 }
 
 // SAVE LOCAL STORAGE
-savedDataFromLocalStorage(WATCHED_KEY, arrOfWatchedId);
-savedDataFromLocalStorage(QUEUE_KEY, arrOfQueueId);
 function savedDataFromLocalStorage(key, arrOfId) {
   const savedData = localStorage.getItem(key);
   if (savedData) {
@@ -155,6 +144,8 @@ function savedDataFromLocalStorage(key, arrOfId) {
     });
   }
 }
+savedDataFromLocalStorage(WATCHED_KEY, arrOfWatchedId);
+savedDataFromLocalStorage(QUEUE_KEY, arrOfQueueId);
 
 // FUNCTION TO CHECK ACTIVE BTN ON MODAL
 function checkActiveClass(arr, btn) {
@@ -164,14 +155,13 @@ function checkActiveClass(arr, btn) {
 }
 
 // FUNCTION FOR RENDER MARKUP FOR EMPTY LIBRARY
-export function rendermarkupEmptyLibrary() {
+export function renderMarkupEmptyLibrary() {
   const imgRef = container.querySelector('.film__img--nothing');
   if (imgRef) {
     return;
   }
   const markupEmptyLibrary = `
-  <img class="film__img--nothing" src="${nothing}" alt="nothingHere">
+    <img class="film__img--nothing" src="${nothing}" alt="nothingHere">
   `;
-
   container.insertAdjacentHTML('afterbegin', markupEmptyLibrary);
 }
