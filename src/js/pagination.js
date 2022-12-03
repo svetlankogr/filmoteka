@@ -1,5 +1,9 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import { fetchTopFilms } from './api';
+import { createFilmItemMarkup } from './main-initial-films';
+
+const filmsList = document.querySelector('.films__list');
 
 
 const options = {
@@ -17,3 +21,13 @@ function smoothScrool() {
 };
 
 const pagination = new Pagination('pagination', options);
+
+pagination.on('afterMove', async (event) => {
+  const currentPage = event.page;
+  const {
+    data: { results: filmArray }
+  } = await fetchTopFilms(currentPage);
+  const items = createFilmItemMarkup(filmArray);
+  filmsList.innerHTML = items
+  smoothScrool();
+});

@@ -9,16 +9,16 @@ const filmsApi = axios.create({
   },
 });
 
-export function fetchTopFilms() {
-  return filmsApi.get('trending/movie/day')
+export function fetchTopFilms(page = 1) {
+  return filmsApi.get(`trending/movie/day?page=${page}`)
 }
 
 export function fetchGenresList() {
   return filmsApi.get('genre/movie/list?language=en-US')
 }
 
-export function searchFilms(keyword) {
-  return filmsApi.get(`search/movie/?&page=1`, {params: {query: keyword}})
+export function searchFilms(keyword, page = 1) {
+  return filmsApi.get(`search/movie/?page=${page}`, {params: {query: keyword}})
 }
 
 export function getFilmById(id) {
