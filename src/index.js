@@ -5,3 +5,4 @@ import './js/modal-team';
 import './js/firebase';
 import './js/auth';
 import './js/modal-singin';
+import './js/button-up';

@@ -38,3 +38,11 @@ button {
   cursor: pointer;
   border: none;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.overflow {
+  overflow: hidden;
+}
