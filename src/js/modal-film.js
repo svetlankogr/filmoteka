@@ -74,7 +74,10 @@ export async function onFilmClick(e) {
       onBtnClickAddToWatchedOrQueue(e, arrOfQueueId, QUEUE_KEY, currentArr)
     );
   } catch (error) {
-    Notify.failure(error.message);
+    Notify.failure(error.message, {
+      timeout: 1500,
+      position: 'center-top',
+    });
     onCloseModalClick();
   }
 }
@@ -128,7 +131,10 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key, currArr) {
     if (!currArr.length && window.location.pathname === '/library.html') {
       renderMarkupEmptyLibrary();
     }
-    Notify.success(`Film successfully removed from ${key}`);
+    Notify.success(`Film successfully removed from ${key}`, {
+      timeout: 1500,
+      position: 'center-top',
+    });
     if (window.location.pathname === '/library.html') {
       if (arr === currArr) {
         filmCardId = filmsList[0].querySelector(`[data-filmId="${id}"]`);
@@ -141,7 +147,10 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key, currArr) {
     e.target.textContent = `remove to ${key}`;
     e.target.classList.remove(`modal-film__${key}`);
     e.target.classList.add('js-active');
-    Notify.success(`Film successfully added to ${key}`);
+    Notify.success(`Film successfully added to ${key}`, {
+      timeout: 1500,
+      position: 'center-top',
+    });
   }
   localStorage.setItem(key, JSON.stringify(arr));
 }
