@@ -19,9 +19,6 @@
   transition: opacity linear 200ms;
 }
 
-.overflow {
-  overflow: hidden;
-}
 .modal-film__close-btn {
   display: flex;
   position: absolute;
@@ -155,7 +152,6 @@
   font-weight: $medium-weight;
   font-size: 2rem;
   line-height: 2.3rem;
-  color: $main-color;
   text-transform: uppercase;
 
   @media screen and (min-width: $desktop) {
