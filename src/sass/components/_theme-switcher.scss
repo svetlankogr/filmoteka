@@ -1,5 +1,5 @@
-.header,
-.header__library {
+.container-header-library,
+.container-header {
   position: relative;
 }
 
@@ -11,12 +11,12 @@
   position: absolute;
   bottom: 10%;
   right: 3%;
-  width: 4rem;
-  height: 2rem;
+  width: 5rem;
+  height: 2.7rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.9rem;
   border-radius: 5rem;
   border: 2px solid $white-color;
   cursor: pointer;
@@ -25,9 +25,9 @@
 .theme-toggler {
   position: absolute;
   top: 50%;
-  left: 0.03rem;
-  width: 1.8rem;
-  height: 1.8rem;
+  left: 0.1rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   background-color: $white-color;
   transform: translate(0, -50%);
@@ -38,14 +38,17 @@
   background: #8e0e00; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #8e0e00, #1f1c18);
   background: linear-gradient(to right, #8e0e00, #1f1c18);
-  //   color: $white-color;
+  color: $white-color;
 }
 
 .dark-modal-film {
   background: #1d4350; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #a43931, #1d4350);
   background: linear-gradient(to right, #a43931, #1d4350);
+  color: $white-color;
+}
 
+.dark-modal-footer {
   color: $white-color;
 }
 
@@ -55,5 +58,5 @@
 
 .dark-toggler {
   background-color: #bf1f1f;
-  transform: translate(105%, -50%);
+  transform: translate(120%, -50%);
 }
