@@ -1,11 +1,9 @@
 import { Notify } from 'notiflix';
 import { fetchGenresList, fetchTopFilms } from './api';
 import { isAuthCheck } from './isAuth-check';
-import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
-import { smoothScroll } from './scroll-to-top';
+import { pagination } from './pagination';
 
-const list = document.querySelector('.films__list');
+const filmsList = document.querySelector('.films__list');
 let genresList = null;
 const spinner = document.querySelector('.js-spinner');
 
@@ -21,30 +19,10 @@ const spinner = document.querySelector('.js-spinner');
     } = await fetchGenresList();
     genresList = genres;
 
-    const paginationTopFilms = new Pagination('pagination', {
-      totalItems: total_results,
-      itemsPerPage: filmsArray.length,
-      visiblePages: 5,
-    });
-    paginationTopFilms.on('afterMove', async event => {
-      const currentPage = event.page;
-      try {
-        spinner.hidden = false;
-        const {
-          data: { results: filmsArray },
-        } = await fetchTopFilms(currentPage);
-        const items = createFilmItemMarkup(filmsArray);
-        list.innerHTML = items;
-        smoothScroll();
-      } catch (error) {
-        Notify.failure(error.message);
-      } finally {
-        spinner.hidden = true;
-      }
-    });
+    pagination(total_results, filmsArray, fetchTopFilms);
 
     const items = createFilmItemMarkup(filmsArray);
-    list.innerHTML = items;
+    filmsList.innerHTML = items;
   } catch (error) {
     Notify.failure(error.message);
   } finally {
