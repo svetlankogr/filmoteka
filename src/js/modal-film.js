@@ -156,6 +156,7 @@ function savedDataFromLocalStorage(key, arrOfId) {
       return arrOfId.push(el);
     });
   }
+  localStorage.setItem(key, JSON.stringify(arrOfId));
 }
 savedDataFromLocalStorage(WATCHED_KEY, arrOfWatchedId);
 savedDataFromLocalStorage(QUEUE_KEY, arrOfQueueId);
