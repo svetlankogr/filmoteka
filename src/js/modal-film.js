@@ -117,7 +117,6 @@ export function getAllGenres(array) {
 
 //ADD-REMOVE TO-FROM LOCAL STORAGE
 function onBtnClickAddToWatchedOrQueue(e, arr, key, currArr) {
-  console.log(arr)
   if (arr.includes(id)) {
     const index = arr.indexOf(id);
     arr.splice(index, 1);
