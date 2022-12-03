@@ -28,7 +28,7 @@ export function isAuthCheck() {
   if (location.pathname.includes('library.html')) {
     watchedBtn.hidden = false;
     queueBtn.hidden = false;
-    const filmsList = '<ul class="films__list"></ul>';
+    const filmsList = '<ul class="films__list" data-page="watched"></ul>';
     container.innerHTML = filmsList;
     const filmsListRef = document.querySelector('.films__list');
     filmsListRef.addEventListener('click', onFilmClick);

@@ -4,7 +4,6 @@ import { getAllGenres } from './modal-film';
 import { renderMarkupEmptyLibrary } from './modal-film';
 import { isAuthCheck } from './isAuth-check';
 import { WATCHED_KEY, QUEUE_KEY } from './modal-film';
-import { TOKEN_KEY } from './auth';
 
 const spinner = document.querySelector('.js-spinner');
 const container = document.querySelector('.films').querySelector('.container');
@@ -12,8 +11,8 @@ const filmsList = document.getElementsByClassName('films__list');
 const watchedBtn = document.querySelector('.header__buttons-library--watched');
 const queueBtn = document.querySelector('.header__buttons-library--queue');
 
-watchedBtn && watchedBtn.addEventListener('click', () => onQueueOrWatchedBtnClick(watchedBtn, queueBtn, WATCHED_KEY));
-queueBtn && queueBtn.addEventListener('click', () => onQueueOrWatchedBtnClick(queueBtn, watchedBtn, QUEUE_KEY));
+watchedBtn && watchedBtn.addEventListener('click', onWatchedBtnClick);
+queueBtn && queueBtn.addEventListener('click', onQueueBtnClick);
 
 (async () => {
   isAuthCheck();
@@ -25,7 +24,16 @@ function onQueueOrWatchedBtnClick(currentBtn, secondBtn, key) {
   secondBtn.classList.remove('btn-accent');
   secondBtn.classList.add('btn-main');
   filmsList[0].innerHTML = '';
+  filmsList[0].dataset.page = key;
   loadFilmsForLibrary(key);
+}
+
+function onWatchedBtnClick() {
+  onQueueOrWatchedBtnClick(watchedBtn, queueBtn, WATCHED_KEY);
+}
+
+function onQueueBtnClick() {
+  onQueueOrWatchedBtnClick(queueBtn, watchedBtn, QUEUE_KEY);
 }
 
 export function loadFilmsForLibrary(key) {
