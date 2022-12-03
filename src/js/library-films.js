@@ -4,14 +4,12 @@ import { getAllGenres } from './modal-film';
 import { renderMarkupEmptyLibrary } from './modal-film';
 import { isAuthCheck } from './isAuth-check';
 import { WATCHED_KEY, QUEUE_KEY } from './modal-film';
-import { TOKEN_KEY } from './auth';
 
 const spinner = document.querySelector('.js-spinner');
 const container = document.querySelector('.films').querySelector('.container');
 const filmsList = document.getElementsByClassName('films__list');
 const watchedBtn = document.querySelector('.header__buttons-library--watched');
 const queueBtn = document.querySelector('.header__buttons-library--queue');
-const paginationRef = document.querySelector('#pagination')
 
 watchedBtn && watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn && queueBtn.addEventListener('click', onQueueBtnClick);

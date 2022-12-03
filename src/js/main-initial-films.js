@@ -24,6 +24,7 @@ if (location.pathname.includes('index')) {
       filmsList.innerHTML = items;
 
       pagination(total_results, filmsArray, fetchTopFilms);
+      
     } catch (error) {
       Notify.failure(error.message);
     } finally {
