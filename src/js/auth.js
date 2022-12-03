@@ -46,16 +46,10 @@ async function handleGoogleSignIn() {
 
     token && localStorage.setItem(TOKEN_KEY, token);
 
-    Notify.success(`Hi ${user}, you are welcome! ❤`, {
-      timeout: 1500,
-      position: 'center-top',
-    });
+    Notify.success(`Hi ${user}, you are welcome! ❤`);
     isAuthCheck();
   } catch (error) {
-    Notify.failure(error.message, {
-      timeout: 1500,
-      position: 'center-top',
-    });
+    Notify.failure(error.message);
   }
 }
 
@@ -64,15 +58,9 @@ async function handleSignOut() {
     await signOut(auth);
     localStorage.removeItem(TOKEN_KEY);
 
-    Notify.success(`You logged out successfully`, {
-      timeout: 1500,
-      position: 'center-top',
-    });
+    Notify.success(`You logged out successfully`);
     isAuthCheck();
   } catch (error) {
-    Notify.failure(error.message, {
-      timeout: 1500,
-      position: 'center-top',
-    });
+    Notify.failure(error.message);
   }
 }

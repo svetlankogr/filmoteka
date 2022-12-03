@@ -4,7 +4,6 @@ import { getAllGenres } from './modal-film';
 import { renderMarkupEmptyLibrary } from './modal-film';
 import { isAuthCheck } from './isAuth-check';
 import { WATCHED_KEY, QUEUE_KEY } from './modal-film';
-import { TOKEN_KEY } from './auth';
 
 const spinner = document.querySelector('.js-spinner');
 const container = document.querySelector('.films').querySelector('.container');
@@ -24,7 +23,7 @@ function onQueueOrWatchedBtnClick(currentBtn, secondBtn, key) {
   currentBtn.classList.add('btn-accent');
   secondBtn.classList.remove('btn-accent');
   secondBtn.classList.add('btn-main');
-  filmsList.innerHTML = '';
+  filmsList[0].innerHTML = '';
   loadFilmsForLibrary(key);
 }
 

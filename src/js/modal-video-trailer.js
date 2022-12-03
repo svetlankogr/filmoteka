@@ -20,16 +20,10 @@ export async function onImageClickOpenVideo(id) {
       modalVideo.classList.remove('is-hidden');
       modalVideo.addEventListener('click', onCloseModalClick);
     } else {
-      Notify.failure('Trailers not found', {
-        timeout: 1500,
-        position: 'center-top',
-      });
+      Notify.failure('Trailers not found');
     }
   } catch (error) {
-    Notify.failure(error.message, {
-      timeout: 1500,
-      position: 'center-top',
-    });
+    Notify.failure(error.message);
   } finally {
     spinner.hidden = true;
   }
