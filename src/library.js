@@ -4,3 +4,5 @@ import './js/modal-team';
 import './js/theme-switcher';
 import './js/modal-singin';
 import './js/button-up';
+import './js/pagination'
+

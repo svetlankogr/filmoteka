@@ -1,33 +1,40 @@
 import { Notify } from 'notiflix';
 import { fetchGenresList, fetchTopFilms } from './api';
 import { isAuthCheck } from './isAuth-check';
+import { pagination } from './pagination';
 
-const list = document.querySelector('.films__list');
+const filmsList = document.querySelector('.films__list');
 let genresList = null;
 const spinner = document.querySelector('.js-spinner');
 
-(async () => {
-  try {
-    spinner.hidden = false;
-    isAuthCheck();
-    const {
-      data: { results: filmArray },
-    } = await fetchTopFilms();
-    const {
-      data: { genres },
-    } = await fetchGenresList();
-    genresList = genres;
-    const items = createFilmItemMarkup(filmArray);
-    list.innerHTML = items;
-  } catch (error) {
-    Notify.failure(error);
-  } finally {
-    spinner.hidden = true;
-  }
-})();
+if (!location.pathname.includes('library')) {
+  (async () => {
+    try {
+      spinner.hidden = false;
+      isAuthCheck();
+      const {
+        data: { results: filmsArray, total_results },
+      } = await fetchTopFilms();
+      const {
+        data: { genres },
+      } = await fetchGenresList();
+      genresList = genres;
 
-export function createFilmItemMarkup(filmArray) {
-  return filmArray
+      const items = createFilmItemMarkup(filmsArray);
+      filmsList.innerHTML = items;
+
+      pagination(total_results, filmsArray, fetchTopFilms);
+      
+    } catch (error) {
+      Notify.failure(error.message);
+    } finally {
+      spinner.hidden = true;
+    }
+  })();
+}
+
+export function createFilmItemMarkup(filmsArray) {
+  return filmsArray
     .map(el => {
       let elGenres = [];
       for (let i = 0; i < el.genre_ids.length; i++) {

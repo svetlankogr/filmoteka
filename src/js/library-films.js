@@ -14,7 +14,7 @@ const queueBtn = document.querySelector('.header__buttons-library--queue');
 watchedBtn && watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn && queueBtn.addEventListener('click', onQueueBtnClick);
 
-(async () => {
+(() => {
   isAuthCheck();
 })();
 
@@ -43,24 +43,23 @@ export function loadFilmsForLibrary(key) {
   if (imgRef[0]) {
     imgRef[0].remove();
   }
-  if (!parsedFilms || !parsedFilms.length) {
+  if (!parsedFilms.length) {
     renderMarkupEmptyLibrary();
+    return;
   }
-  if (parsedFilms) {
-    parsedFilms.forEach(async el => {
-      try {
-        spinner.hidden = false;
-        const { data } = await getFilmById(el);
-        const allGenres = getAllGenres(data.genres);
-        const markUp = createMarkupForLibrary(data, allGenres);
-        filmsList[0].insertAdjacentHTML('beforeend', markUp);
-        watchedBtn.addEventListener('click', onWatchedBtnClick);
-        queueBtn.addEventListener('click', onQueueBtnClick);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        spinner.hidden = true;
-      }
-    });
-  }
+  parsedFilms.forEach(async el => {
+    try {
+      spinner.hidden = false;
+      const { data } = await getFilmById(el);
+      const allGenres = getAllGenres(data.genres);
+      const markUp = createMarkupForLibrary(data, allGenres);
+      filmsList[0].insertAdjacentHTML('beforeend', markUp);
+      watchedBtn.addEventListener('click', onWatchedBtnClick);
+      queueBtn.addEventListener('click', onQueueBtnClick);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      spinner.hidden = true;
+    }
+  });
 }

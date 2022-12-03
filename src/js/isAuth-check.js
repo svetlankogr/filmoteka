@@ -12,7 +12,7 @@ export function isAuthCheck() {
   changeEventHandler();
   if (!token) {
     authBtn.textContent = 'Sign In';
-    if (location.pathname === '/library.html') {
+    if (location.pathname.includes('library')) {
       watchedBtn.hidden = true;
       queueBtn.hidden = true;
       container.innerHTML = 'You have to log in!';
@@ -25,10 +25,11 @@ export function isAuthCheck() {
   signin.classList.add('is-hidden');
 
   authBtn.textContent = 'Log out';
-  if (location.pathname.includes('library.html')) {
+
+  if (location.pathname.includes('library')) {
     watchedBtn.hidden = false;
     queueBtn.hidden = false;
-    const filmsList = '<ul class="films__list" data-page="watched"></ul>';
+    const filmsList = '<ul class="films__list" data-page="watched"></ul><div id="pagination" class="tui-pagination"></div>';
     container.innerHTML = filmsList;
     const filmsListRef = document.querySelector('.films__list');
     filmsListRef.addEventListener('click', onFilmClick);
