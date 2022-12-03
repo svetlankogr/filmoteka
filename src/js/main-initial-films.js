@@ -19,10 +19,12 @@ const spinner = document.querySelector('.js-spinner');
     } = await fetchGenresList();
     genresList = genres;
 
-    pagination(total_results, filmsArray, fetchTopFilms);
-
     const items = createFilmItemMarkup(filmsArray);
     filmsList.innerHTML = items;
+
+    if (location.pathname.includes('index')) {
+      pagination(total_results, filmsArray, fetchTopFilms);
+    }
   } catch (error) {
     Notify.failure(error.message);
   } finally {

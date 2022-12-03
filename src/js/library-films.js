@@ -11,6 +11,7 @@ const container = document.querySelector('.films').querySelector('.container');
 const filmsList = document.getElementsByClassName('films__list');
 const watchedBtn = document.querySelector('.header__buttons-library--watched');
 const queueBtn = document.querySelector('.header__buttons-library--queue');
+const paginationRef = document.querySelector('#pagination')
 
 watchedBtn && watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn && queueBtn.addEventListener('click', onQueueBtnClick);
@@ -25,7 +26,7 @@ function onWatchedBtnClick() {
   queueBtn.classList.remove('btn-accent');
   queueBtn.classList.add('btn-main');
   filmsList[0].innerHTML = '';
-  filmsList[0].setAttribute('data-page', WATCHED_KEY)
+  filmsList[0].setAttribute('data-page', WATCHED_KEY);
   loadFilmsForLibrary(WATCHED_KEY);
 }
 
@@ -35,7 +36,7 @@ function onQueueBtnClick() {
   watchedBtn.classList.remove('btn-accent');
   watchedBtn.classList.add('btn-main');
   filmsList[0].innerHTML = '';
-  filmsList[0].setAttribute('data-page', QUEUE_KEY)
+  filmsList[0].setAttribute('data-page', QUEUE_KEY);
   loadFilmsForLibrary(QUEUE_KEY);
 }
 
@@ -48,22 +49,21 @@ export function loadFilmsForLibrary(key) {
   }
   if (!parsedFilms || !parsedFilms.length) {
     renderMarkupEmptyLibrary();
+    return;
   }
-  if (parsedFilms) {
-    parsedFilms.forEach(async el => {
-      try {
-        spinner.hidden = false;
-        const { data } = await getFilmById(el);
-        const allGenres = getAllGenres(data.genres);
-        const markUp = createMarkupForLibrary(data, allGenres);
-        filmsList[0].insertAdjacentHTML('beforeend', markUp);
-        watchedBtn.addEventListener('click', onWatchedBtnClick);
-        queueBtn.addEventListener('click', onQueueBtnClick);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        spinner.hidden = true;
-      }
-    });
-  }
+  parsedFilms.forEach(async el => {
+    try {
+      spinner.hidden = false;
+      const { data } = await getFilmById(el);
+      const allGenres = getAllGenres(data.genres);
+      const markUp = createMarkupForLibrary(data, allGenres);
+      filmsList[0].insertAdjacentHTML('beforeend', markUp);
+      watchedBtn.addEventListener('click', onWatchedBtnClick);
+      queueBtn.addEventListener('click', onQueueBtnClick);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      spinner.hidden = true;
+    }
+  });
 }
