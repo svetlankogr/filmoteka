@@ -1,0 +1,27 @@
+//utils
+@import './utils/variables';
+@import './utils/placeholders';
+@import './utils/mixins';
+
+// base
+@import './base/common';
+@import './base/container';
+@import './base/global';
+@import './base/visually_hidden';
+
+// layout
+@import './layout/main-header';
+@import './layout/library-header';
+@import './layout/films';
+@import './layout/footer';
+@import './layout/modal-film-info';
+@import './layout/modal-team-info';
+@import './layout/modal-signin';
+@import './layout/button-up';
+
+// components
+@import './components/buttons';
+@import './components/spinner';
+@import './components/pagination';
+@import './components/theme-switcher';
+

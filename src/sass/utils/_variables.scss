@@ -1,0 +1,21 @@
+//Containers
+$desktop: 1280px;
+$tablet: 768px;
+$phone: 480px;
+$phone-sm: 320px;
+
+//COLORS
+$accent-color: #FF6B01;
+$main-color: #000000;
+$white-color: #FFFFFF;
+
+//FONTS
+//family
+$font-family: 'Roboto', sans-serif;
+// weight
+$regular-weight: 400;
+$medium-weight: 500;
+
+//ANIMATION
+$transition-duration: 250ms;
+$transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

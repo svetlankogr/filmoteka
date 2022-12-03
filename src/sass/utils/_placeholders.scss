@@ -1,0 +1,16 @@
+%buttons {
+  padding: 0.6rem 1rem 0.6rem 1rem;
+  border-radius: 5px;
+  color: $white-color;
+  line-height: 1.33;
+  text-transform: uppercase;
+  font-weight: $medium-weight;
+
+  @media screen and (min-width: $tablet) {
+    padding: 1.4rem 0.9rem 1.2rem 0.9rem;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding: 1.4rem 1rem 1.2rem 1rem;
+  }
+}
