@@ -7,30 +7,30 @@ const filmsList = document.querySelector('.films__list');
 let genresList = null;
 const spinner = document.querySelector('.js-spinner');
 
-(async () => {
-  try {
-    spinner.hidden = false;
-    isAuthCheck();
-    const {
-      data: { results: filmsArray, total_results },
-    } = await fetchTopFilms();
-    const {
-      data: { genres },
-    } = await fetchGenresList();
-    genresList = genres;
+if (location.pathname.includes('index')) {
+  (async () => {
+    try {
+      spinner.hidden = false;
+      isAuthCheck();
+      const {
+        data: { results: filmsArray, total_results },
+      } = await fetchTopFilms();
+      const {
+        data: { genres },
+      } = await fetchGenresList();
+      genresList = genres;
 
-    const items = createFilmItemMarkup(filmsArray);
-    filmsList.innerHTML = items;
+      const items = createFilmItemMarkup(filmsArray);
+      filmsList.innerHTML = items;
 
-    if (location.pathname.includes('index')) {
       pagination(total_results, filmsArray, fetchTopFilms);
+    } catch (error) {
+      Notify.failure(error.message);
+    } finally {
+      spinner.hidden = true;
     }
-  } catch (error) {
-    Notify.failure(error.message);
-  } finally {
-    spinner.hidden = true;
-  }
-})();
+  })();
+}
 
 export function createFilmItemMarkup(filmsArray) {
   return filmsArray

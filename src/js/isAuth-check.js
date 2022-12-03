@@ -27,7 +27,7 @@ export function isAuthCheck() {
   authBtn.textContent = 'Log out';
   if (location.pathname === '/library.html') {
     const filmsList =
-      '<ul class="films__list"></ul><div id="pagination" class="tui-pagination"></div>';
+      '<ul class="films__list" data-page="watched"></ul><div id="pagination" class="tui-pagination"></div>';
     container.innerHTML = filmsList;
     const filmsListRef = document.querySelector('.films__list');
     filmsListRef.addEventListener('click', onFilmClick);

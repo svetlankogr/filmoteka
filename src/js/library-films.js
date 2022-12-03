@@ -16,7 +16,7 @@ const paginationRef = document.querySelector('#pagination')
 watchedBtn && watchedBtn.addEventListener('click', onWatchedBtnClick);
 queueBtn && queueBtn.addEventListener('click', onQueueBtnClick);
 
-(async () => {
+(() => {
   isAuthCheck();
 })();
 
@@ -47,7 +47,7 @@ export function loadFilmsForLibrary(key) {
   if (imgRef[0]) {
     imgRef[0].remove();
   }
-  if (!parsedFilms || !parsedFilms.length) {
+  if (!parsedFilms.length) {
     renderMarkupEmptyLibrary();
     return;
   }
