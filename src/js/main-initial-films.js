@@ -7,7 +7,7 @@ const filmsList = document.querySelector('.films__list');
 let genresList = null;
 const spinner = document.querySelector('.js-spinner');
 
-if (location.pathname.includes('index')) {
+if (!location.pathname.includes('library')) {
   (async () => {
     try {
       spinner.hidden = false;

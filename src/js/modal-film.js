@@ -123,11 +123,11 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key, currArr) {
     e.target.textContent = `add to ${key}`;
     e.target.classList.add(`modal-film__${key}`);
     e.target.classList.remove('js-active');
-    if (!currArr.length && window.location.pathname === '/library.html') {
+    if (!currArr.length && location.pathname.includes('library')) {
       renderMarkupEmptyLibrary();
     }
     Notify.success(`Film successfully removed from ${key}`);
-    if (window.location.pathname === '/library.html') {
+    if (location.pathname.includes('library')) {
       if(arr === currArr) {
         filmCardId = filmsList[0].querySelector(`[data-filmId="${id}"]`);
         filmCardId.remove();
