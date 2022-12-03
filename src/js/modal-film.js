@@ -57,7 +57,6 @@ export async function onFilmClick(e) {
       addToQueueBtn.hidden = true;
     }
     modal.classList.remove('is-hidden');
-    document.body.classList.add('overflow');
     const imageLinkRef = document.querySelector('.modal-film__img-link');
     imageLinkRef.addEventListener('click', () => onImageClickOpenVideo(id));
 
@@ -89,7 +88,6 @@ function setBtnText(arr, id, key) {
 
 // CLOSE MODAL
 export function onCloseModalClick() {
-  document.body.classList.remove('overflow');
   if (!modalVideo.classList.contains('is-hidden')) {
     modalVideo.innerHTML = '';
     modalVideo.classList.add('is-hidden');
