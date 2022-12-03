@@ -18,19 +18,14 @@ justify-content: center;
     margin-bottom: 40px;
 
     font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
+    font-weight: $medium-weight;
     font-size: 12px;
     line-height: 16px;
 
-
-}
-
-@media screen and (min-width: 768px) {
-    .tui-pagination {
+    @media screen and (min-width: 768px){
         width: 374px
     }
-  }
+}
 
 .tui-page-btn {
     width: 13px;
@@ -42,15 +37,15 @@ justify-content: center;
     margin-right: 16px;
 }
 .tui-is-selected {
-    background-color: #FF6B08;
-    color: white;
+    background-color: $accent-color;
+    color: $white-color;
     width: 40px;
     padding: 13px 11px;
 }
 
 
 
-.custom-class-prev
+.pagination-prev
 {
     height: 40px;
     width: 40px;
@@ -62,7 +57,7 @@ justify-content: center;
     margin-right: 16px;
 
 }
-.custom-class-next {
+.pagination-next {
     height: 40px;
     width: 40px;
     background-image: url(../images/pagination/arrow-right.png);

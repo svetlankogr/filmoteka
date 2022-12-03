@@ -18,12 +18,10 @@ export function pagination(total_results, filmsArray, api, keyword) {
       page: '<a href="#" class="tui-page-btn">{{page}}</a>',
       currentPage: '<a class="tui-page-btn tui-is-selected">{{page}}</a>',
       moveButton:
-          '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
-              '<span class="tui-ico-{{type}}"></span>' +
+          '<a href="#" class="tui-page-btn tui-{{type}} pagination-{{type}}">' +
           '</a>',
       disabledMoveButton:
-          '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
-              '<span class="tui-ico-{{type}}"></span>' +
+          '<span class="tui-page-btn tui-is-disabled tui-{{type}} pagination-{{type}}">' +
           '</span>',
       moreButton:
           '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
