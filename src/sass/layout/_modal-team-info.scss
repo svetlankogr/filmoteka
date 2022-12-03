@@ -42,20 +42,20 @@
 }
 
 /* ---------- початковий стан Modal Window ---------- */
-.modal {
+.modal-team {
   position: absolute;
   top: 5%;
   left: 50%;
   transform: translate(-50%, 0) scale(1);
   opacity: 1;
 
-  padding: 40px;
+  padding: 30px;
   width: 95%;
 
   background-color: var(--main-white);
   border-radius: 4px;
-  
-  transition: transform var(--anim-fast) 400ms, opacity var(--anim-fast) 400ms;
+
+  // transition: transform var(--anim-fast) 400ms, opacity var(--anim-fast) 400ms;
 
   @media screen and (min-width: 480px) {
     max-width: 450px;
@@ -64,13 +64,15 @@
   }
 
   @media screen and (min-width: 768px) {
-    max-width: 528px;
-    min-height: 581px;
+    max-width: 700px;
+  }
+  @media screen and (min-width: 1200px) {
+    max-width: 800px;
   }
 }
 
 /* кінцевий стан */
-.backdrop-team.is-hidden .modal {
+.backdrop-team.is-hidden .modal-team {
   transform: translate(-50%, -50%) scale(0.3);
   opacity: 0;
 }
@@ -117,13 +119,10 @@
 
   padding-left: 0;
   padding-right: 0;
-  margin-top: 50px;
-  margin-bottom: 30px;
-  gap: 30px;
-}
-
-@media screen and (min-width: 768px) {
-  .team__list {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  gap: 15px;
+  @media screen and (min-width: 768px) {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -132,13 +131,14 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    flex-direction: row;
   }
 }
 
 .team__member {
   margin: 0 auto;
-  max-width: 450px;
-  max-height: 622px;
+  max-width: 250px;
+
   height: 100%;
   background-color: var(--main-white);
   -webkit-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -148,6 +148,9 @@
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 0px 0px 4px 4px;
+  @media screen and (min-width: 768px) {
+    max-width: 200px;
+  }
 }
 
 // @media screen and (min-width: 768px) {
@@ -166,9 +169,8 @@
 //     margin-bottom: 30px;
 //   }
 // }
-
 .team__block {
-  padding: 30px 0;
+  padding: 10px 0;
 }
 
 .team__title {
@@ -176,16 +178,16 @@
   font-size: 16px;
   text-align: center;
   letter-spacing: 0.03em;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .team__field {
-  font-size: 16px;
+  font-size: 12px;
   color: var(--main-gray);
   text-align: center;
   letter-spacing: 0.03em;
   font-weight: normal;
-  margin-bottom: 16px;
+  margin-bottom: 6px;
 }
 
 /* ----- Member's Social Media ----- */
@@ -219,7 +221,7 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 .socials__link {
@@ -232,8 +234,8 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 44px;
-  height: 44px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   color: #afb1b8;
   -webkit-transition-property: color, background-color;

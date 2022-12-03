@@ -1,0 +1,32 @@
+.button__up {
+  border: none;
+  position: relative;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(251, 185, 63);
+  background: radial-gradient(
+    circle,
+    rgba(251, 185, 63, 0.8018557764902836) 0%,
+    rgba(252, 112, 70, 1) 100%
+  );
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  transform: rotateZ(-90deg);
+  stroke: $white-color;
+  @include transitionAll(transform, box-shadow);
+  &:hover {
+    transform: rotateZ(-90deg) scale(1.1);
+    box-shadow: 0 2px 17px #ff6b0199;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 60px;
+    height: 60px;
+  }
+}

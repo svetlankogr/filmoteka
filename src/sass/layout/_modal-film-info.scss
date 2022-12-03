@@ -19,9 +19,6 @@
   transition: opacity linear 200ms;
 }
 
-.overflow {
-  overflow: hidden;
-}
 .modal-film__close-btn {
   display: flex;
   position: absolute;
@@ -33,13 +30,10 @@
   width: 14px;
   height: 14px;
   background-color: transparent;
-  // transition: transform cubic-bezier(0.4, 0, 0.2, 1) 200ms;
-  transition: fill $transition-duration $transition-timing-function,
-    transform $transition-duration $transition-timing-function;
+  @include transitionAll(fill);
   &:hover,
   &:focus {
     fill: $accent-color;
-    transform: scale(1.2);
   }
 }
 .modal-film__container {
@@ -158,7 +152,6 @@
   font-weight: $medium-weight;
   font-size: 2rem;
   line-height: 2.3rem;
-  color: $main-color;
   text-transform: uppercase;
 
   @media screen and (min-width: $desktop) {
@@ -200,6 +193,7 @@
     color: $white-color;
     background: $accent-color;
     border-radius: 5px;
+    padding-top: 1px;
   }
   &--uppercase {
     text-transform: uppercase;
@@ -241,15 +235,19 @@
   color: $main-color;
   font-size: 1.1rem;
   transition: color cubic-bezier(0.4, 0, 0.2, 1) 200ms;
-  // transition: background-color $transition-duration $transition-timing-function,
-  //   color $transition-duration $transition-timing-function,
-  //   border-color $transition-duration $transition-timing-function,
-  //   box-shadow $transition-duration $transition-timing-function;
+  @include transitionAll(
+    background-color,
+    color,
+    border-color,
+    box-shadow,
+    transform
+  );
   &:hover {
     background-color: #ce5702;
     border-color: #ce5702;
     color: $white-color;
     box-shadow: 0 2px 17px #ff6b0199;
+    transform: scale(1.1);
   }
   @media screen and (min-width: $desktop) {
     width: 155px;
@@ -267,6 +265,20 @@
   box-shadow: 0 2px 17px #ff6b0199;
   color: $white-color;
   font-size: 1.1rem;
+  @include transitionAll(
+    background-color,
+    color,
+    border-color,
+    box-shadow,
+    transform
+  );
+  &:hover {
+    background-color: #ce5702;
+    border-color: #ce5702;
+    color: $white-color;
+    box-shadow: 0 2px 17px #ff6b0199;
+    transform: scale(1.1);
+  }
   @media screen and (min-width: $desktop) {
     width: 155px;
   }

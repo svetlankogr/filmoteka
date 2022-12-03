@@ -18,24 +18,22 @@ queueBtn && queueBtn.addEventListener('click', onQueueBtnClick);
   isAuthCheck();
 })();
 
-function onWatchedBtnClick() {
-  watchedBtn.classList.remove('btn-main');
-  watchedBtn.classList.add('btn-accent');
-  queueBtn.classList.remove('btn-accent');
-  queueBtn.classList.add('btn-main');
+function onQueueOrWatchedBtnClick(currentBtn, secondBtn, key) {
+  currentBtn.classList.remove('btn-main');
+  currentBtn.classList.add('btn-accent');
+  secondBtn.classList.remove('btn-accent');
+  secondBtn.classList.add('btn-main');
   filmsList[0].innerHTML = '';
-  filmsList[0].setAttribute('data-page', WATCHED_KEY);
-  loadFilmsForLibrary(WATCHED_KEY);
+  filmsList[0].dataset.page = key;
+  loadFilmsForLibrary(key);
+}
+
+function onWatchedBtnClick() {
+  onQueueOrWatchedBtnClick(watchedBtn, queueBtn, WATCHED_KEY);
 }
 
 function onQueueBtnClick() {
-  queueBtn.classList.remove('btn-main');
-  queueBtn.classList.add('btn-accent');
-  watchedBtn.classList.remove('btn-accent');
-  watchedBtn.classList.add('btn-main');
-  filmsList[0].innerHTML = '';
-  filmsList[0].setAttribute('data-page', QUEUE_KEY);
-  loadFilmsForLibrary(QUEUE_KEY);
+  onQueueOrWatchedBtnClick(queueBtn, watchedBtn, QUEUE_KEY);
 }
 
 export function loadFilmsForLibrary(key) {

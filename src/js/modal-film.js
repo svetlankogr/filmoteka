@@ -3,6 +3,10 @@ import { getFilmById } from './api';
 import { renderModalMarkup } from './createMarkupForModal';
 import { onImageClickOpenVideo } from './modal-video-trailer';
 import nothing from '../images/theres-nothing-to-see-here.gif';
+Notify.init({
+  timeout: 1500,
+  position: 'center-top',
+});
 
 const container = document.querySelector('.films .container');
 const containerForModal = document.querySelector('.js-container');
@@ -24,7 +28,7 @@ const arrOfQueueId = [];
 filmsList[0].addEventListener('click', onFilmClick);
 closeModalBtn.addEventListener('click', onCloseModalClick);
 modal.addEventListener('click', onBackdropCloseClick);
-const TOKEN_KEY = 'token'
+const TOKEN_KEY = 'token';
 
 // OPEN MODAL
 export async function onFilmClick(e) {
@@ -32,7 +36,6 @@ export async function onFilmClick(e) {
   if (e.target === e.currentTarget) {
     return;
   }
-
   const item = e.target.closest('li');
   id = item.dataset.filmid;
 
@@ -64,7 +67,7 @@ export async function onFilmClick(e) {
     checkActiveClass(arrOfWatchedId, addToWatchedBtn);
     checkActiveClass(arrOfQueueId, addToQueueBtn);
     let currentArr = arrOfWatchedId;
-    if(filmsList[0].dataset.page === QUEUE_KEY) {
+    if (filmsList[0].dataset.page === QUEUE_KEY) {
       currentArr = arrOfQueueId;
     }
     addToWatchedBtn.addEventListener('click', e =>

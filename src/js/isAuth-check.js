@@ -25,9 +25,11 @@ export function isAuthCheck() {
   signin.classList.add('is-hidden');
 
   authBtn.textContent = 'Log out';
+
   if (location.pathname.includes('library')) {
-    const filmsList =
-      '<ul class="films__list" data-page="watched"></ul><div id="pagination" class="tui-pagination"></div>';
+    watchedBtn.hidden = false;
+    queueBtn.hidden = false;
+    const filmsList = '<ul class="films__list" data-page="watched"></ul><div id="pagination" class="tui-pagination"></div>';
     container.innerHTML = filmsList;
     const filmsListRef = document.querySelector('.films__list');
     filmsListRef.addEventListener('click', onFilmClick);

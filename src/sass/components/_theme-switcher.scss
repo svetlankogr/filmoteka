@@ -1,0 +1,62 @@
+.container-header-library,
+.container-header {
+  position: relative;
+}
+
+.icon-theme {
+  font-size: 16px;
+  color: aliceblue;
+}
+.theme-container {
+  position: absolute;
+  bottom: 10%;
+  right: 3%;
+  width: 5rem;
+  height: 2.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9rem;
+  border-radius: 5rem;
+  border: 2px solid $white-color;
+  cursor: pointer;
+}
+
+.theme-toggler {
+  position: absolute;
+  top: 50%;
+  left: 0.1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: $white-color;
+  transform: translate(0, -50%);
+  transition: transform 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.dark {
+  background: #8e0e00; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #8e0e00, #1f1c18);
+  background: linear-gradient(to right, #8e0e00, #1f1c18);
+  color: $white-color;
+}
+
+.dark-modal-film {
+  background: #1d4350; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #a43931, #1d4350);
+  background: linear-gradient(to right, #a43931, #1d4350);
+  color: $white-color;
+}
+
+.dark-modal-footer {
+  color: $white-color;
+}
+
+.dark-toggler-container {
+  border-color: #8e0e00;
+}
+
+.dark-toggler {
+  background-color: #bf1f1f;
+  transform: translate(120%, -50%);
+}
