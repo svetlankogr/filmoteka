@@ -6,6 +6,7 @@ import { pagination } from './pagination';
 const formSearchFilmsRef = document.querySelector('#search-form');
 const filmsList = document.querySelector('.films__list');
 const spinner = document.querySelector('.js-spinner');
+const paginationRef = document.querySelector('#pagination')
 
 formSearchFilmsRef.addEventListener('submit', onSubmitFetchMovies);
 
@@ -28,11 +29,16 @@ async function fetchFilmsByQuery(keyword, currentPage) {
       data: { results: filmsArray, total_results },
     } = await searchFilms(keyword, currentPage);
     if (!filmsArray.length) {
+      paginationRef.innerHTML = ""
       Notify.failure('Films not found');
       return;
     }
 
-    pagination(total_results, filmsArray, searchFilms, keyword);
+    if(total_results > 20) {
+      pagination(total_results, filmsArray, searchFilms, keyword);
+    } else {
+      paginationRef.innerHTML = ""
+    }
 
     const items = createFilmItemMarkup(filmsArray);
     filmsList.innerHTML = items;
