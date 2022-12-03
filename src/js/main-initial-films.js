@@ -20,10 +20,7 @@ const spinner = document.querySelector('.js-spinner');
     const items = createFilmItemMarkup(filmArray);
     list.innerHTML = items;
   } catch (error) {
-    Notify.failure(error, {
-      timeout: 1500,
-      position: 'center-top',
-    });
+    Notify.failure(error);
   } finally {
     spinner.hidden = true;
   }
