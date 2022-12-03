@@ -24,7 +24,7 @@ const arrOfQueueId = [];
 filmsList[0].addEventListener('click', onFilmClick);
 closeModalBtn.addEventListener('click', onCloseModalClick);
 modal.addEventListener('click', onBackdropCloseClick);
-const TOKEN_KEY = 'token'
+const TOKEN_KEY = 'token';
 
 // OPEN MODAL
 export async function onFilmClick(e) {
@@ -32,7 +32,6 @@ export async function onFilmClick(e) {
   if (e.target === e.currentTarget) {
     return;
   }
-
   const item = e.target.closest('li');
   id = item.dataset.filmid;
 
@@ -58,13 +57,14 @@ export async function onFilmClick(e) {
       addToQueueBtn.hidden = true;
     }
     modal.classList.remove('is-hidden');
+    document.body.classList.add('overflow');
     const imageLinkRef = document.querySelector('.modal-film__img-link');
     imageLinkRef.addEventListener('click', () => onImageClickOpenVideo(id));
 
     checkActiveClass(arrOfWatchedId, addToWatchedBtn);
     checkActiveClass(arrOfQueueId, addToQueueBtn);
     let currentArr = arrOfWatchedId;
-    if(filmsList[0].dataset.page === QUEUE_KEY) {
+    if (filmsList[0].dataset.page === QUEUE_KEY) {
       currentArr = arrOfQueueId;
     }
     addToWatchedBtn.addEventListener('click', e =>
@@ -74,7 +74,10 @@ export async function onFilmClick(e) {
       onBtnClickAddToWatchedOrQueue(e, arrOfQueueId, QUEUE_KEY, currentArr)
     );
   } catch (error) {
-    Notify.failure(error.message);
+    Notify.failure(error.message, {
+      timeout: 1500,
+      position: 'center-top',
+    });
     onCloseModalClick();
   }
 }
@@ -86,6 +89,7 @@ function setBtnText(arr, id, key) {
 
 // CLOSE MODAL
 export function onCloseModalClick() {
+  document.body.classList.remove('overflow');
   if (!modalVideo.classList.contains('is-hidden')) {
     modalVideo.innerHTML = '';
     modalVideo.classList.add('is-hidden');
@@ -117,7 +121,7 @@ export function getAllGenres(array) {
 
 //ADD-REMOVE TO-FROM LOCAL STORAGE
 function onBtnClickAddToWatchedOrQueue(e, arr, key, currArr) {
-  console.log(arr)
+  console.log(arr);
   if (arr.includes(id)) {
     const index = arr.indexOf(id);
     arr.splice(index, 1);
@@ -127,9 +131,12 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key, currArr) {
     if (!currArr.length && window.location.pathname === '/library.html') {
       renderMarkupEmptyLibrary();
     }
-    Notify.success(`Film successfully removed from ${key}`);
+    Notify.success(`Film successfully removed from ${key}`, {
+      timeout: 1500,
+      position: 'center-top',
+    });
     if (window.location.pathname === '/library.html') {
-      if(arr === currArr) {
+      if (arr === currArr) {
         filmCardId = filmsList[0].querySelector(`[data-filmId="${id}"]`);
         filmCardId.remove();
         onCloseModalClick();
@@ -140,7 +147,10 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key, currArr) {
     e.target.textContent = `remove to ${key}`;
     e.target.classList.remove(`modal-film__${key}`);
     e.target.classList.add('js-active');
-    Notify.success(`Film successfully added to ${key}`);
+    Notify.success(`Film successfully added to ${key}`, {
+      timeout: 1500,
+      position: 'center-top',
+    });
   }
   localStorage.setItem(key, JSON.stringify(arr));
 }

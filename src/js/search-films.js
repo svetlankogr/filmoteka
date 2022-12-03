@@ -10,10 +10,13 @@ formSearchFilmsRef.addEventListener('submit', onSubmitFetchMovies);
 
 async function onSubmitFetchMovies(e) {
   e.preventDefault();
-  filmsList.innerHTML = "";
+  filmsList.innerHTML = '';
   const keyword = e.currentTarget.searchQuery.value.trim();
   if (!keyword) {
-    Notify.failure('Please enter something');
+    Notify.failure('Please enter something', {
+      timeout: 1500,
+      position: 'center-top',
+    });
     return;
   }
   try {
@@ -22,14 +25,20 @@ async function onSubmitFetchMovies(e) {
       data: { results: filmsArray },
     } = await searchFilms(keyword);
     if (!filmsArray.length) {
-      Notify.failure('Films not found');
+      Notify.failure('Films not found', {
+        timeout: 1500,
+        position: 'center-top',
+      });
       return;
     }
     const items = createFilmItemMarkup(filmsArray);
     filmsList.innerHTML = items;
     spinner.hidden = true;
   } catch (error) {
-    Notify.failure(error.message);
+    Notify.failure(error.message, {
+      timeout: 1500,
+      position: 'center-top',
+    });
   } finally {
     spinner.hidden = true;
   }

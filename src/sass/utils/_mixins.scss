@@ -1,7 +1,13 @@
 @mixin transition(
   $property: color,
   $transition-duration: 250ms,
-  $transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
+  $transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
 ) {
   transition: $property $transition-duration $transition-timing-function;
+}
+
+@mixin transitionAll($transition-property...) {
+  transition-property: $transition-property;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
