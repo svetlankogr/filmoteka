@@ -18,7 +18,7 @@ export function fetchGenresList() {
 }
 
 export function searchFilms(keyword, page = 1) {
-  return filmsApi.get(`search/movie/?page=${page}`, {params: {query: keyword}})
+  return filmsApi.get(`search/movie?page=${page}`, {params: {query: keyword}})
 }
 
 export function getFilmById(id) {
