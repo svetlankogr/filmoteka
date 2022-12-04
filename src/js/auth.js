@@ -11,7 +11,6 @@ export const TOKEN_KEY = 'token';
 
 account.addEventListener('click', opensigninModal);
 signinClose.addEventListener('click', closesigninModal);
-signin.addEventListener('click', (e) => onBackdropCloseClick(e))
 btnRef.addEventListener('click', handleGoogleSignIn);
 
 export function changeEventHandler() {
@@ -27,6 +26,8 @@ export function changeEventHandler() {
 
 export function opensigninModal() {
   signin.classList.remove('is-hidden');
+  document.addEventListener('keydown', onEscKeyDown);
+  signin.addEventListener('click', onBackdropCloseClick)
 }
 
 function onBackdropCloseClick(e) {
@@ -35,7 +36,14 @@ function onBackdropCloseClick(e) {
   }
 }
 
+const onEscKeyDown = event => {
+  if (event.code === 'Escape') {
+    closesigninModal();
+  }
+};
+
 export function closesigninModal() {
+  document.removeEventListener('keydown', onEscKeyDown);
   signin.classList.add('is-hidden');
 }
 
