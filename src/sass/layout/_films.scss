@@ -18,6 +18,10 @@
 .films__link {
   display: block;
   height: 100%;
+
+  &:hover .films__img {
+    transform: scale(1.05);
+  }
 }
 
 .films__img-container {
@@ -43,6 +47,8 @@
 .films__img {
   width: 100%;
   height: 100%;
+  will-change: transform;
+  @include transition(transform, 400ms)
 }
 
 .films__title {
