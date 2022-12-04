@@ -3,6 +3,9 @@ const themModalRef = document.querySelector('.modal-film');
 const themFooterRef = document.querySelector('.js-them-footer');
 const footerRef = document.querySelector('.footer__content')
 const signInModalRef = document.querySelector('.modal-signin__container')
+const spinnerLoadingTextRef = document.querySelector('.load')
+const spinnerHandsRef = document.querySelector('.hands')
+const spinnerBodyRef = document.querySelector('.body')
 
 themeContainerRef.addEventListener('click', onClickThemeToggle);
 
@@ -24,5 +27,8 @@ function toggleDark() {
   themeContainerRef.classList.toggle('dark-toggler-container');
   themeContainerRef.lastElementChild.classList.toggle('dark-toggler');
   signInModalRef.classList.toggle('dark-modal-film');
-  footerRef.classList.toggle('dark-modal-footer');
+  footerRef.classList.toggle('dark-color-change');
+  spinnerLoadingTextRef.classList.toggle('dark-color-change')
+  spinnerHandsRef.classList.toggle('dark-box-shadow')
+  spinnerBodyRef.classList.toggle('dark-box-shadow')
 }

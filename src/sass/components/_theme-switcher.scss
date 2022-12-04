@@ -48,8 +48,12 @@
   color: $white-color;
 }
 
-.dark-modal-footer {
+.dark-color-change {
   color: $white-color;
+}
+
+.dark-box-shadow {
+  box-shadow: inset -5px 2px 0px 0px rgb(255, 255, 255);
 }
 
 .dark-toggler-container {
