@@ -15,7 +15,8 @@ export function isAuthCheck() {
     if (location.pathname.includes('library')) {
       watchedBtn.hidden = true;
       queueBtn.hidden = true;
-      container.innerHTML = 'You have to log in!';
+      const haveToLoginText = `<p class='have-to-login'>You have to log in to see this page</p>`
+      container.innerHTML = haveToLoginText;
       opensigninModal();
     }
     return;

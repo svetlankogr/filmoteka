@@ -5,6 +5,5 @@ import './js/modal-team';
 import './js/theme-switcher';
 import './js/firebase';
 import './js/auth';
-import './js/modal-singin';
 import './js/button-up';
 import './js/pagination'

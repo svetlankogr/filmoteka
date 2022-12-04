@@ -4,6 +4,7 @@ import { getAllGenres } from './modal-film';
 import { renderMarkupEmptyLibrary } from './modal-film';
 import { isAuthCheck } from './isAuth-check';
 import { WATCHED_KEY, QUEUE_KEY } from './modal-film';
+import { Notify } from 'notiflix';
 
 const spinner = document.querySelector('.js-spinner');
 const container = document.querySelector('.films').querySelector('.container');
@@ -58,6 +59,7 @@ export function loadFilmsForLibrary(key) {
       queueBtn.addEventListener('click', onQueueBtnClick);
     } catch (error) {
       console.log(error);
+      Notify.failure(error.message)
     } finally {
       spinner.hidden = true;
     }
