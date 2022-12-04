@@ -58,6 +58,7 @@
 }
 
 .header__buttons-library {
+  cursor: url(../images/cursor.png), pointer;
   width: 129px;
   height: 44px;
   transition: background-color $transition-duration $transition-timing-function,

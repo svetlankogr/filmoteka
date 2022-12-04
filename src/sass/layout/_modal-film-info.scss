@@ -92,7 +92,7 @@
   border-radius: 5px;
   overflow: hidden;
   margin-bottom: 20px;
-  cursor: pointer;
+  cursor: url(../images/cursor.png), pointer;
 
   @media screen and (min-width: $tablet) {
     width: 264px;
@@ -235,6 +235,7 @@
   color: $main-color;
   font-size: 1.1rem;
   transition: color cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+  cursor: url(../images/cursor.png), pointer;
   @include transitionAll(
     background-color,
     color,
