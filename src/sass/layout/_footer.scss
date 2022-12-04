@@ -8,7 +8,7 @@ footer {
 .footer__content {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: baseline;
   align-content: center;
   justify-content: center;
   gap: 10px;
@@ -37,9 +37,51 @@ footer {
   }
 }
 
+.footer_developers--link {
+  display: flex;
+  align-items: center;
+}
+
+/*============================================== 
+                Pulsing Heart
+==============================================*/
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(0.75);
+  }
+  20% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.75);
+  }
+  60% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(0.75);
+  }
+}
+
+// div {
+//   background-color: red;
+//   width: 50px;
+//   height: 50px;
+//   animation: heartbeat 1s infinite;
+// }
+
 .icon-love {
-  width: 14px;
-  height: 14px;
+  ::before {
+    box-sizing: border-box;
+  }
+
+  width: 20px;
+  height: 20px;
 
   margin: 0 10px;
+  animation: heartbeat 1s infinite;
 }
