@@ -59,7 +59,11 @@ export async function onFilmClick(e) {
     document.addEventListener('keydown', onEscKeydown);
     containerForModal.innerHTML = markUp;
     [...modalFilmBtnsContainerRef[0].children].forEach(el => {
-      el.classList.toggle('dark-modal-btns');
+      if (localStorage.getItem('theme') === 'dark') {
+        el.classList.add('dark-modal-btns');
+      } else {
+        el.classList.remove('dark-modal-btns');
+      }
     });
     const addToWatchedBtn = document.querySelector('.modal-film__watched');
     const addToQueueBtn = document.querySelector('.modal-film__queue');
