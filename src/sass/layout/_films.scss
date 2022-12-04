@@ -25,6 +25,10 @@
   border-radius: 5px;
   overflow: hidden;
 
+  @media screen and (min-width: $phone) {
+    min-height: 398px;
+  }
+
   @media screen and (min-width: $tablet) {
     margin-bottom: 0.8rem;
     height: 455px;

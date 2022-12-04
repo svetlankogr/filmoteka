@@ -12,6 +12,7 @@ formSearchFilmsRef.addEventListener('submit', onSubmitFetchMovies);
 
 function onSubmitFetchMovies(e) {
   e.preventDefault();
+  paginationRef.innerHTML = '';
   filmsList.innerHTML = '';
   const keyword = e.currentTarget.searchQuery.value.trim();
   if (!keyword) {
