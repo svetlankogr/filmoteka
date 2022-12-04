@@ -12,7 +12,6 @@ const arrowNextRef = document.getElementsByClassName('pagination-next')
 
 
 export function pagination(total_results, filmsArray, api, keyword) {
-  const savedTheme = localStorage.getItem('theme');
   const pagination = new Pagination('pagination', {
     totalItems: total_results,
     itemsPerPage: filmsArray.length,
@@ -34,12 +33,14 @@ export function pagination(total_results, filmsArray, api, keyword) {
   }
   });
 
+  const savedTheme = localStorage.getItem('theme');
   if(savedTheme === 'dark') {
     arrowNextRef[0].classList.add('dark-invert')
   }
 
   pagination.on('afterMove', async event => {
     const currentPage = event.page;
+    const savedTheme = localStorage.getItem('theme');
     try {
       spinner.hidden = false;
       const {
