@@ -1,14 +1,18 @@
-const themeContainerRef = document.querySelector('.theme-container');
-const themModalRef = document.querySelector('.modal-film');
-const themFooterRef = document.querySelector('.js-them-footer');
-const footerRef = document.querySelector('.footer__content');
-const signInModalRef = document.querySelector('.modal-signin__container');
-const spinnerLoadingTextRef = document.querySelector('.load');
-const spinnerHandsRef = document.querySelector('.hands');
-const spinnerBodyRef = document.querySelector('.body');
-const modalHeaderRef = document.querySelector('.modal-signin__title');
-const arrowNextRef = document.getElementsByClassName('pagination-next')
-const arrowPrevRef = document.getElementsByClassName('pagination-prev')
+import { refs } from './refs';
+
+const {
+  themeContainerRef,
+  themModalRef,
+  themFooterRef,
+  footerRef,
+  signInModalRef,
+  spinnerLoadingTextRef,
+  spinnerHandsRef,
+  spinnerBodyRef,
+  modalHeaderRef,
+  arrowNextRef,
+  arrowPrevRef,
+} = refs;
 
 themeContainerRef.addEventListener('click', onClickThemeToggle);
 
@@ -36,10 +40,10 @@ function toggleDark() {
   spinnerHandsRef.classList.toggle('dark-box-shadow');
   spinnerBodyRef.classList.toggle('dark-box-shadow');
   if (localStorage.getItem('theme') === 'light') {
-    arrowNextRef[0] && arrowNextRef[0].classList.remove('dark-invert');
-    arrowPrevRef[0] && arrowPrevRef[0].classList.remove('dark-invert');
+    arrowNextRef[0]?.classList.remove('dark-invert');
+    arrowPrevRef[0]?.classList.remove('dark-invert');
   } else {
-    arrowNextRef[0] && arrowNextRef[0].classList.add('dark-invert');
-    arrowPrevRef[0] && arrowPrevRef[0].classList.add('dark-invert');
+    arrowNextRef[0]?.classList.add('dark-invert');
+    arrowPrevRef[0]?.classList.add('dark-invert');
   }
 }

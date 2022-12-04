@@ -2,18 +2,16 @@ import { Notify } from 'notiflix';
 import { searchFilms } from './api';
 import { createFilmItemMarkup } from './main-initial-films';
 import { pagination } from './pagination';
+import {refs} from './refs'
 
-const formSearchFilmsRef = document.querySelector('#search-form');
-const filmsList = document.querySelector('.films__list');
-const spinner = document.querySelector('.js-spinner');
-const paginationRef = document.querySelector('#pagination')
+const {formSearchFilmsRef, filmsList, spinner, paginationRef} = refs;
 
 formSearchFilmsRef.addEventListener('submit', onSubmitFetchMovies);
 
 function onSubmitFetchMovies(e) {
   e.preventDefault();
   paginationRef.innerHTML = '';
-  filmsList.innerHTML = '';
+  filmsList[0].innerHTML = '';
   const keyword = e.currentTarget.searchQuery.value.trim();
   if (!keyword) {
     Notify.failure('Please enter something');
@@ -42,7 +40,7 @@ async function fetchFilmsByQuery(keyword, currentPage) {
     }
 
     const items = createFilmItemMarkup(filmsArray);
-    filmsList.innerHTML = items;
+    filmsList[0].innerHTML = items;
     spinner.hidden = true;
   } catch (error) {
     Notify.failure(error.message);

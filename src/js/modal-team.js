@@ -1,18 +1,18 @@
-const openModalBtn = document.querySelector('[data-modal-team-open]');
-const modal = document.querySelector('[data-modal-team]');
-const closeModalBtn = document.querySelector('[data-modal-team-close]');
+import { refs } from './refs';
+
+const { openModalTeamBtn, modalTeam, closeModalTeamBtn } = refs;
 
 const onModalOpenBtnElClick = () => {
-  modal.classList.remove('is-hidden');
+  modalTeam.classList.remove('is-hidden');
   document.addEventListener('keydown', onEscKeyDown);
-  modal.addEventListener('click', onBackdropElClick);
+  modalTeam.addEventListener('click', onBackdropElClick);
 };
 
 const closeModal = () => {
-  modal.classList.add('is-hidden');
+  modalTeam.classList.add('is-hidden');
 
   document.removeEventListener('keydown', onEscKeyDown);
-  modal.removeEventListener('click', onBackdropElClick);
+  modalTeam.removeEventListener('click', onBackdropElClick);
 };
 
 const onEscKeyDown = event => {
@@ -29,5 +29,5 @@ const onBackdropElClick = event => {
   }
 };
 
-openModalBtn.addEventListener('click', onModalOpenBtnElClick);
-closeModalBtn.addEventListener('click', closeModal);
+openModalTeamBtn.addEventListener('click', onModalOpenBtnElClick);
+closeModalTeamBtn.addEventListener('click', closeModal);

@@ -1,9 +1,9 @@
 import { Notify } from 'notiflix';
 import { getTrailerById } from './api';
 import { onCloseModalClick } from './modal-film';
+import {refs} from './refs'
 
-const modalVideo = document.querySelector('[data-modal-video]');
-const spinner = document.querySelector('.js-spinner');
+const {modalVideo, spinner} = refs;
 
 export async function onImageClickOpenVideo(id) {
   try {

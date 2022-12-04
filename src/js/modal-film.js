@@ -3,17 +3,22 @@ import { getFilmById } from './api';
 import { renderModalMarkup } from './createMarkupForModal';
 import { onImageClickOpenVideo } from './modal-video-trailer';
 import nothing from '../images/theres-nothing-to-see-here.gif';
+import { refs } from './refs';
+
+const {
+  container,
+  containerForModal,
+  filmsList,
+  modal,
+  modalVideo,
+  closeModalBtn,
+  modalFilmBtnsContainerRef,
+} = refs;
+
 Notify.init({
   timeout: 1500,
   position: 'center-top',
 });
-
-const container = document.querySelector('.films .container');
-const containerForModal = document.querySelector('.js-container');
-const filmsList = document.getElementsByClassName('films__list');
-const modal = document.querySelector('[data-modal]');
-const modalVideo = document.querySelector('[data-modal-video]');
-const closeModalBtn = document.querySelector('[data-modal-close]');
 
 export const WATCHED_KEY = 'watched';
 export const QUEUE_KEY = 'queue';
@@ -53,6 +58,9 @@ export async function onFilmClick(e) {
 
     document.addEventListener('keydown', onEscKeydown);
     containerForModal.innerHTML = markUp;
+    [...modalFilmBtnsContainerRef[0].children].forEach(el => {
+      el.classList.toggle('dark-modal-btns');
+    });
     const addToWatchedBtn = document.querySelector('.modal-film__watched');
     const addToQueueBtn = document.querySelector('.modal-film__queue');
     const token = localStorage.getItem(TOKEN_KEY);
@@ -131,7 +139,7 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key, currArr) {
     }
     Notify.success(`Film successfully removed from ${key}`);
     if (location.pathname.includes('library')) {
-      if(arr === currArr) {
+      if (arr === currArr) {
         filmCardId = filmsList[0].querySelector(`[data-filmId="${id}"]`);
         filmCardId.remove();
         onCloseModalClick();

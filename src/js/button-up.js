@@ -1,4 +1,7 @@
-let btnToUp = document.querySelector('.button__up');
+import {refs} from './refs'
+
+const {btnToUp} = refs;
+
 let scroll;
 document.body.addEventListener('scroll', function( event ) {
   scroll = document.body.scrollTop;

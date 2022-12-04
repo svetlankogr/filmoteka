@@ -1,10 +1,9 @@
 import { changeEventHandler, opensigninModal, TOKEN_KEY } from './auth';
 import { loadFilmsForLibrary } from './library-films';
 import { onFilmClick, WATCHED_KEY } from './modal-film';
+import {refs} from './refs'
 
-const container = document.querySelector('.films .container');
-const watchedBtn = document.querySelector('.header__buttons-library--watched');
-const queueBtn = document.querySelector('.header__buttons-library--queue');
+const {container, watchedBtn, queueBtn} = refs;
 
 export function isAuthCheck() {
   const token = localStorage.getItem(TOKEN_KEY);

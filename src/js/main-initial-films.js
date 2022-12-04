@@ -2,10 +2,12 @@ import { Notify } from 'notiflix';
 import { fetchGenresList, fetchTopFilms } from './api';
 import { isAuthCheck } from './isAuth-check';
 import { pagination } from './pagination';
+import {refs} from './refs'
 
-const filmsList = document.querySelector('.films__list');
+const {spinner, filmsList} = refs;
+
 let genresList = null;
-const spinner = document.querySelector('.js-spinner');
+
 
 if (!location.pathname.includes('library')) {
   (async () => {
@@ -21,7 +23,7 @@ if (!location.pathname.includes('library')) {
       genresList = genres;
 
       const items = createFilmItemMarkup(filmsArray);
-      filmsList.innerHTML = items;
+      filmsList[0].innerHTML = items;
 
       pagination(total_results, filmsArray, fetchTopFilms);
       
