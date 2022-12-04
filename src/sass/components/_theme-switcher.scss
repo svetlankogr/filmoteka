@@ -64,3 +64,7 @@
   background-color: #bf1f1f;
   transform: translate(112%, -50%);
 }
+
+.dark-invert {
+  filter: invert(100%);
+}

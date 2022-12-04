@@ -7,6 +7,8 @@ const spinnerLoadingTextRef = document.querySelector('.load');
 const spinnerHandsRef = document.querySelector('.hands');
 const spinnerBodyRef = document.querySelector('.body');
 const modalHeaderRef = document.querySelector('.modal-signin__title');
+const arrowNextRef = document.getElementsByClassName('pagination-next')
+const arrowPrevRef = document.getElementsByClassName('pagination-prev')
 
 themeContainerRef.addEventListener('click', onClickThemeToggle);
 
@@ -33,4 +35,8 @@ function toggleDark() {
   modalHeaderRef.classList.toggle('dark-color-change');
   spinnerHandsRef.classList.toggle('dark-box-shadow');
   spinnerBodyRef.classList.toggle('dark-box-shadow');
+  // if (localStorage.getItem('theme') !== 'dark') {
+    arrowNextRef[0] && arrowNextRef[0].classList.toggle('dark-invert');
+    arrowNextRef[0] && arrowPrevRef[0].classList.toggle('dark-invert');
+  // }
 }
