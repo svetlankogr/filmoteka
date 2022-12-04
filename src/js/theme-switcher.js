@@ -1,11 +1,12 @@
 const themeContainerRef = document.querySelector('.theme-container');
 const themModalRef = document.querySelector('.modal-film');
 const themFooterRef = document.querySelector('.js-them-footer');
-const footerRef = document.querySelector('.footer__content')
-const signInModalRef = document.querySelector('.modal-signin__container')
-const spinnerLoadingTextRef = document.querySelector('.load')
-const spinnerHandsRef = document.querySelector('.hands')
-const spinnerBodyRef = document.querySelector('.body')
+const footerRef = document.querySelector('.footer__content');
+const signInModalRef = document.querySelector('.modal-signin__container');
+const spinnerLoadingTextRef = document.querySelector('.load');
+const spinnerHandsRef = document.querySelector('.hands');
+const spinnerBodyRef = document.querySelector('.body');
+const modalHeaderRef = document.querySelector('.modal-signin__title');
 
 themeContainerRef.addEventListener('click', onClickThemeToggle);
 
@@ -28,7 +29,8 @@ function toggleDark() {
   themeContainerRef.lastElementChild.classList.toggle('dark-toggler');
   signInModalRef.classList.toggle('dark-modal-film');
   footerRef.classList.toggle('dark-color-change');
-  spinnerLoadingTextRef.classList.toggle('dark-color-change')
-  spinnerHandsRef.classList.toggle('dark-box-shadow')
-  spinnerBodyRef.classList.toggle('dark-box-shadow')
+  spinnerLoadingTextRef.classList.toggle('dark-color-change');
+  modalHeaderRef.classList.toggle('dark-color-change');
+  spinnerHandsRef.classList.toggle('dark-box-shadow');
+  spinnerBodyRef.classList.toggle('dark-box-shadow');
 }
