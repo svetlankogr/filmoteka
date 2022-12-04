@@ -68,3 +68,12 @@
 .dark-invert {
   filter: invert(100%);
 }
+
+.dark-modal-btns {
+  border: 1px solid $white-color;
+  color: $white-color;
+
+  &.js-active {
+    border: transparent;
+  }
+}

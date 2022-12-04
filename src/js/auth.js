@@ -2,11 +2,10 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { Notify } from 'notiflix';
 import { auth } from './firebase';
 import { isAuthCheck } from './isAuth-check';
+import {refs} from './refs'
 
-const account = document.querySelector('.account__link');
-const signin = document.querySelector('.modal-signin__backdrop');
-const signinClose = document.querySelector('.modal-signin__close-btn');
-const btnRef = document.querySelector('.modal-signin__button');
+const {account, signin, signinClose, btnRef} = refs;
+
 export const TOKEN_KEY = 'token';
 
 account.addEventListener('click', opensigninModal);
