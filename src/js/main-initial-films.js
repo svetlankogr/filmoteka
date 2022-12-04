@@ -65,6 +65,7 @@ export function createFilmItemMarkup(filmsArray) {
             src="${imageSrc}"
             alt="${el.original_title} poster"
             class="films__img"
+            loading="lazy"
           />
         </div>
         <h2 class="films__title">${el.original_title}</h2>
