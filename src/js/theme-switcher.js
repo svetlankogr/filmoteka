@@ -35,8 +35,11 @@ function toggleDark() {
   modalHeaderRef.classList.toggle('dark-color-change');
   spinnerHandsRef.classList.toggle('dark-box-shadow');
   spinnerBodyRef.classList.toggle('dark-box-shadow');
-  // if (localStorage.getItem('theme') !== 'dark') {
-    arrowNextRef[0] && arrowNextRef[0].classList.toggle('dark-invert');
-    arrowNextRef[0] && arrowPrevRef[0].classList.toggle('dark-invert');
-  // }
+  if (localStorage.getItem('theme') === 'light') {
+    arrowNextRef[0] && arrowNextRef[0].classList.remove('dark-invert');
+    arrowPrevRef[0] && arrowPrevRef[0].classList.remove('dark-invert');
+  } else {
+    arrowNextRef[0] && arrowNextRef[0].classList.add('dark-invert');
+    arrowPrevRef[0] && arrowPrevRef[0].classList.add('dark-invert');
+  }
 }

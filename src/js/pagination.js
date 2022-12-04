@@ -9,10 +9,10 @@ const spinner = document.querySelector('.js-spinner');
 const filmsList = document.querySelector('.films__list');
 const arrowPrevRef = document.getElementsByClassName('pagination-prev')
 const arrowNextRef = document.getElementsByClassName('pagination-next')
-const savedTheme = localStorage.getItem('theme');
 
 
 export function pagination(total_results, filmsArray, api, keyword) {
+  const savedTheme = localStorage.getItem('theme');
   const pagination = new Pagination('pagination', {
     totalItems: total_results,
     itemsPerPage: filmsArray.length,
