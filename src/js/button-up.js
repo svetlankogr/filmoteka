@@ -1,9 +1,9 @@
 let btnToUp = document.querySelector('.button__up');
 let scroll;
-window.onscroll = function () {
-  scroll = window.pageYOffset;
+document.body.addEventListener('scroll', function( event ) {
+  scroll = document.body.scrollTop;
   btnToUp.classList.add('is-hidden');
   if (scroll > 900) {
     btnToUp.classList.remove('is-hidden');
   }
-};
+});

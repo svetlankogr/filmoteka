@@ -1,8 +1,14 @@
 const themeContainerRef = document.querySelector('.theme-container');
 const themModalRef = document.querySelector('.modal-film');
 const themFooterRef = document.querySelector('.js-them-footer');
-const footerRef = document.querySelector('.footer__content')
-const signInModalRef = document.querySelector('.modal-signin__container')
+const footerRef = document.querySelector('.footer__content');
+const signInModalRef = document.querySelector('.modal-signin__container');
+const spinnerLoadingTextRef = document.querySelector('.load');
+const spinnerHandsRef = document.querySelector('.hands');
+const spinnerBodyRef = document.querySelector('.body');
+const modalHeaderRef = document.querySelector('.modal-signin__title');
+const arrowNextRef = document.getElementsByClassName('pagination-next')
+const arrowPrevRef = document.getElementsByClassName('pagination-prev')
 
 themeContainerRef.addEventListener('click', onClickThemeToggle);
 
@@ -24,5 +30,13 @@ function toggleDark() {
   themeContainerRef.classList.toggle('dark-toggler-container');
   themeContainerRef.lastElementChild.classList.toggle('dark-toggler');
   signInModalRef.classList.toggle('dark-modal-film');
-  footerRef.classList.toggle('dark-modal-footer');
+  footerRef.classList.toggle('dark-color-change');
+  spinnerLoadingTextRef.classList.toggle('dark-color-change');
+  modalHeaderRef.classList.toggle('dark-color-change');
+  spinnerHandsRef.classList.toggle('dark-box-shadow');
+  spinnerBodyRef.classList.toggle('dark-box-shadow');
+  // if (localStorage.getItem('theme') !== 'dark') {
+    arrowNextRef[0] && arrowNextRef[0].classList.toggle('dark-invert');
+    arrowNextRef[0] && arrowPrevRef[0].classList.toggle('dark-invert');
+  // }
 }

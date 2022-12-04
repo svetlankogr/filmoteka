@@ -18,6 +18,7 @@ export function createMarkupForLibrary(films, genresList) {
             src="${imageSrc}"
             alt="${original_title} poster"
             class="films__img"
+            loading="lazy"
           />
         </div>
         <h2 class="films__title">${original_title}</h2>

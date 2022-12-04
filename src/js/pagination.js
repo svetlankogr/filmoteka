@@ -7,6 +7,10 @@ import { Notify } from 'notiflix';
 
 const spinner = document.querySelector('.js-spinner');
 const filmsList = document.querySelector('.films__list');
+const arrowPrevRef = document.getElementsByClassName('pagination-prev')
+const arrowNextRef = document.getElementsByClassName('pagination-next')
+const savedTheme = localStorage.getItem('theme');
+
 
 export function pagination(total_results, filmsArray, api, keyword) {
   const pagination = new Pagination('pagination', {
@@ -29,6 +33,11 @@ export function pagination(total_results, filmsArray, api, keyword) {
           '</a>'
   }
   });
+
+  if(savedTheme === 'dark') {
+    arrowNextRef[0].classList.add('dark-invert')
+  }
+
   pagination.on('afterMove', async event => {
     const currentPage = event.page;
     try {
@@ -38,6 +47,11 @@ export function pagination(total_results, filmsArray, api, keyword) {
       } = keyword ? await api(keyword, currentPage) : await api(currentPage);
       const items = createFilmItemMarkup(filmsArray);
       filmsList.innerHTML = items;
+      if(savedTheme === 'dark') {
+        arrowPrevRef[0] && arrowPrevRef[0].classList.add('dark-invert')
+      } else {
+        arrowPrevRef[0] && arrowPrevRef[0].classList.remove('dark-invert')
+      }
       smoothScroll();
     } catch (error) {
       Notify.failure(error.message);

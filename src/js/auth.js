@@ -11,6 +11,7 @@ export const TOKEN_KEY = 'token';
 
 account.addEventListener('click', opensigninModal);
 signinClose.addEventListener('click', closesigninModal);
+signin.addEventListener('click', (e) => onBackdropCloseClick(e))
 btnRef.addEventListener('click', handleGoogleSignIn);
 
 export function changeEventHandler() {
@@ -26,6 +27,12 @@ export function changeEventHandler() {
 
 export function opensigninModal() {
   signin.classList.remove('is-hidden');
+}
+
+function onBackdropCloseClick(e) {
+  if (e.target === e.currentTarget) {
+    closesigninModal();
+  }
 }
 
 export function closesigninModal() {

@@ -139,7 +139,7 @@ function onBtnClickAddToWatchedOrQueue(e, arr, key, currArr) {
     }
   } else {
     arr.push(id);
-    e.target.textContent = `remove to ${key}`;
+    e.target.textContent = `remove from ${key}`;
     e.target.classList.remove(`modal-film__${key}`);
     e.target.classList.add('js-active');
     Notify.success(`Film successfully added to ${key}`);

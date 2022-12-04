@@ -17,7 +17,10 @@ export function renderModalMarkup(
 
   return `<div class="modal-film__container data-id=${id}">
     <a class="modal-film__img-link" data-image-link>
-      <img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="${original_title}" class="modal-film__img" />
+      <img src="https://image.tmdb.org/t/p/original/${poster_path}" 
+        alt="${original_title}" 
+        class="modal-film__img" 
+        loading="lazy"/>
       <svg class="modal-film__youtube-icon">
         <use href="/icons.adfc4680.svg#youtube"></use>
       </svg>
