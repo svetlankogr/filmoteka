@@ -30,7 +30,7 @@
   border-radius: 5px;
   overflow: hidden;
 
-  @media screen and (min-width: $phone) {
+  @media screen and (min-width: $phone-sm) {
     min-height: 398px;
   }
 
